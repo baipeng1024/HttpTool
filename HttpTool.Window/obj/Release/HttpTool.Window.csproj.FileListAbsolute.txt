@@ -1,0 +1,13 @@
+D:\my\HttpTool\HttpTool.Window\bin\Release\HttpTool.Window.exe.config
+D:\my\HttpTool\HttpTool.Window\bin\Release\HttpTool.Window.exe
+D:\my\HttpTool\HttpTool.Window\bin\Release\HttpTool.Window.pdb
+D:\my\HttpTool\HttpTool.Window\bin\Release\HttpTool.Core.dll
+D:\my\HttpTool\HttpTool.Window\bin\Release\HttpTool.Core.pdb
+D:\my\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.csprojResolveAssemblyReference.cache
+D:\my\HttpTool\HttpTool.Window\obj\Release\Interop.SHDocVw.dll
+D:\my\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.csproj.ResolveComReference.cache
+D:\my\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.Main.resources
+D:\my\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.Properties.Resources.resources
+D:\my\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.csproj.GenerateResource.Cache
+D:\my\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.exe
+D:\my\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.pdb

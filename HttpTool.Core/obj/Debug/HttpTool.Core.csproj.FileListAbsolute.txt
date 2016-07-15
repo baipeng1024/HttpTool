@@ -1,0 +1,4 @@
+D:\my\HttpTool\HttpTool.Core\bin\Debug\HttpTool.Core.dll
+D:\my\HttpTool\HttpTool.Core\bin\Debug\HttpTool.Core.pdb
+D:\my\HttpTool\HttpTool.Core\obj\Debug\HttpTool.Core.dll
+D:\my\HttpTool\HttpTool.Core\obj\Debug\HttpTool.Core.pdb

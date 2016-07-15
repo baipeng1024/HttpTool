@@ -1,0 +1,7 @@
+D:\my\HttpTool\HttpTool.Test\bin\Release\HttpTool.Test.dll
+D:\my\HttpTool\HttpTool.Test\bin\Release\HttpTool.Test.pdb
+D:\my\HttpTool\HttpTool.Test\bin\Release\HttpTool.Core.dll
+D:\my\HttpTool\HttpTool.Test\bin\Release\HttpTool.Core.pdb
+D:\my\HttpTool\HttpTool.Test\obj\Release\HttpTool.Test.csprojResolveAssemblyReference.cache
+D:\my\HttpTool\HttpTool.Test\obj\Release\HttpTool.Test.dll
+D:\my\HttpTool\HttpTool.Test\obj\Release\HttpTool.Test.pdb

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpTool.Window", "HttpTool.Window\HttpTool.Window.csproj", "{0C26A9BF-F70A-4341-B196-9C087B5B2C97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpTool.Core", "HttpTool.Core\HttpTool.Core.csproj", "{D371165B-4836-4138-AFCB-71F58AC1A8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpTool.Test", "HttpTool.Test\HttpTool.Test.csproj", "{6D7E07E8-E911-445D-8D22-366FDE481E98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C26A9BF-F70A-4341-B196-9C087B5B2C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C26A9BF-F70A-4341-B196-9C087B5B2C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C26A9BF-F70A-4341-B196-9C087B5B2C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C26A9BF-F70A-4341-B196-9C087B5B2C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D371165B-4836-4138-AFCB-71F58AC1A8DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D371165B-4836-4138-AFCB-71F58AC1A8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D371165B-4836-4138-AFCB-71F58AC1A8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D371165B-4836-4138-AFCB-71F58AC1A8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D7E07E8-E911-445D-8D22-366FDE481E98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D7E07E8-E911-445D-8D22-366FDE481E98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D7E07E8-E911-445D-8D22-366FDE481E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D7E07E8-E911-445D-8D22-366FDE481E98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
