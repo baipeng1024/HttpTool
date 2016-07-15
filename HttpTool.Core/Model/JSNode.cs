@@ -12,7 +12,7 @@ namespace HttpTool.Core.Model
 
         public override void Exec(FlowContext ctx)
         {
-            throw new NotImplementedException();
+             
         }
     }
 }

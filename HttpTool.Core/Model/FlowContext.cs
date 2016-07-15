@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HttpTool.Core.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,12 +22,15 @@ namespace HttpTool.Core.Model
         }
 
         private WebBrowser wb;
+        public ILogger Logger { get; set; }
+
+        public object JsCtx { get; set; }
 
         public WebBrowser GetWebBrowser() {
             return this.wb;
         }
 
-        public object JsCtx { get; set; }
+     
 
 
         public string GetInitScript() {

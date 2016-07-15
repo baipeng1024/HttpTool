@@ -27,17 +27,11 @@ namespace HttpTool.Window
         private void button1_Click(object sender, EventArgs e)
         {
 
+            string content = "<!DOCTYPE html><html><head> <title></title></head><body></body></html>";
 
-            rtbConsole.Text = "";
-            string[] ips1 = { "172.16.109.111" };
-            string[] ips2 = { "10.187.184.157" };
-            string[] ips3 = { "10.187.51.209" };
-            string[] ips4 = { "10.190.5.126" };
-            TempTest(ips1, "pricecallback.jd.local");
-            TempTest(ips2, "pricecallback.jd.local");
-            TempTest(ips3, "pricecallback.jd.local");
-            TempTest(ips4, "pricecallbacklf.jd.local");
             return;
+
+            
             //WebClientEx client = new WebClientEx();
             //client.Headers.Set("Host", "pricecallback.jd.local");
 

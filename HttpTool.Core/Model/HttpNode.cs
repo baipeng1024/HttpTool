@@ -28,14 +28,14 @@ namespace HttpTool.Core.Model
         public string HandleResponseScript { get; set; }
 
 
-        
-        public string RequestUrlFunctionName { get; set; }
+
+        public string FunctionNameOfRequestUrl { get; set; }
 
 
         /**
         * 请求参数串的方法名称
         *
         **/
-        public string RequestParsStrFunctionName { get; set; }
+        public string FunctionNameOfRequestParsStr { get; set; }
     }
 }
