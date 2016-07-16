@@ -15,8 +15,10 @@ namespace HttpTool.Core.Model
         public string Desc { get; set; }
         public AbsNode NexNode { get; set; }
 
+        public List<string> IncludeJSLib { get; set; }
+
         public abstract void Exec(FlowContext ctx);
 
-
+     
     }
 }

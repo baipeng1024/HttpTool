@@ -26,9 +26,7 @@ namespace HttpTool.Window
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            string content = "<!DOCTYPE html><html><head> <title></title></head><body></body></html>";
-
+            
             return;
 
             

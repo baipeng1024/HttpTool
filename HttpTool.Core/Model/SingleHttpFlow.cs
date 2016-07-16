@@ -18,9 +18,9 @@ namespace HttpTool.Core.Model
 
         public AbsNode HeadNode { get; set; }
 
-        public List<string> IncludeFlowJSLib { get; set; }
+        public List<string> IncludeJSLib { get; set; }
 
-        public void Run(ILogger logger)
+        public FlowContext Run(ILogger logger)
         {
 
             if (logger == null)
@@ -31,21 +31,24 @@ namespace HttpTool.Core.Model
             if (HeadNode == null)
             {
                 logger.Error("没有任何可执行节点");
-                return;
+                return null;
             }
+
             FlowContext ctx = new FlowContext();
-            ctx.Logger = logger;
-            ctx.Logger.Infor("开始执行。。。");
-            WebBrowser wb = ctx.GetWebBrowser();
             try
             {
+                ctx.Init(new WebBrowser(), IncludeJSLib);
+                ctx.Logger = logger;
+                ctx.Logger.Infor("开始执行。。。");
                 HeadNode.Exec(ctx);
             }
             catch (Exception ex)
             {
-                ctx.Logger.Error(string.Format("%s 节点执行异常，异常信息:%s", HeadNode.Name, ex.Message), ex);
+                ctx.Logger.Error(string.Format("{0} 节点执行异常，异常信息:{1}", HeadNode.Name, ex.Message), ex);
             }
+
             ctx.Logger.Infor("执行结束。。。");
+            return ctx;
 
         }
 
