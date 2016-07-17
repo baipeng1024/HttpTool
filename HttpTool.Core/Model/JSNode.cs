@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
+using HttpTool.Core.Common;
 
 namespace HttpTool.Core.Model
 {
@@ -18,18 +20,17 @@ namespace HttpTool.Core.Model
                 return;
             }
 
-            WebBrowser wb = ctx.GetWebBrowser();           
+            WebBrowser wb = ctx.GetWebBrowser();
             string jsContent = ctx.GetInitScript();
             if (this.IncludeJSLib != null) {
                jsContent += JSLibHelper.GetJSLibContent(this.IncludeJSLib);        
             }
 
-            string funName = Guid.NewGuid().ToString();
-            string jsFun = "function "+ funName +"(){\n "+ this.JS +" \n}\n";
-            string content = string.Format("<!DOCTYPE html><html><head> <title></title></head><body><script type=\"text/javascript\"> {0} \n {1} </script></body></html>", jsContent, jsFun);
-            
-            wb.Navigate("about:blank");
-            wb.DocumentText = content;
+            string funName = "f" + Guid.NewGuid().ToString().Replace("-", "");
+            string jsFun = "function "+ funName +"(){"+ this.JS +" };";
+            string content = string.Format("<!DOCTYPE html><html><head> <title></title></head><body><script type=\"text/javascript\"> {0} \n {1} \n</script></body></html>", jsContent, jsFun);
+            Tool.SetWebBrowserDocumentText(wb, content);
+
             object[] args = { ctx.JsCtx };
             HtmlDocument doc = wb.Document;
             doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
@@ -40,6 +41,10 @@ namespace HttpTool.Core.Model
                 this.NexNode.Exec(ctx);
             }
         }
+
+   
+
+        
 
     }
 }

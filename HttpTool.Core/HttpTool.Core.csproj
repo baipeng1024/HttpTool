@@ -47,7 +47,6 @@
     <Compile Include="Common\WebClientEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="JS\Jquery.cs" />
     <Compile Include="JS\JSLibHelper.cs" />
     <Compile Include="Model\BindHostHttpNode.cs" />
     <Compile Include="Model\FlowContext.cs" />

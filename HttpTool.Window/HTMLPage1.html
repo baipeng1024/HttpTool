@@ -1,19 +1,21 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta charset="utf-8" />
     <title></title>
 </head>
 <body>
     <script type="text/javascript">
-        var SYS_CTX = {};
-        SYS_CTX.index = 10;
-        SYS_CTX.getIndex = function () {
-            return SYS_CTX.index;
-        }
 
-        alert(SYS_CTX.getIndex());
+        var ctx = {};
+
+        ctx.index = 0;
+        ctx.getIndex = function () {
+            return ctx.index;
+        }
+        ctx.index++;
+        alert(ctx.getIndex);
+
     </script>
 </body>
 </html>
+ 

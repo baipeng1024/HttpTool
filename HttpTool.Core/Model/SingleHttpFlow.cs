@@ -37,7 +37,7 @@ namespace HttpTool.Core.Model
             FlowContext ctx = new FlowContext();
             try
             {
-                ctx.Init(new WebBrowser(), IncludeJSLib);
+                ctx.Init(new WebBrowser(), IncludeJSLib);              
                 ctx.Logger = logger;
                 ctx.Logger.Infor("开始执行。。。");
                 HeadNode.Exec(ctx);

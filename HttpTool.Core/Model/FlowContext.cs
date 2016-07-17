@@ -14,11 +14,11 @@ namespace HttpTool.Core.Model
     public class FlowContext
     {
 
-        public static readonly string INIT_JS_CTX_FUN_NAME = "httpToolInitJsCtx_" + System.Guid.NewGuid().ToString();
+        public static readonly string INIT_JS_CTX_FUN_NAME = "httpToolInitJsCtx_" + System.Guid.NewGuid().ToString().Replace("-", "");
 
-        public static readonly string GET_JS_CTX_FUN_NAME = "httpToolGetJsCtx" + System.Guid.NewGuid().ToString();
+        public static readonly string GET_JS_CTX_FUN_NAME = "httpToolGetJsCtx" + System.Guid.NewGuid().ToString().Replace("-", "");
 
-        private static readonly string CTX_INIT = "\n var SYS_CTX;\n function " + INIT_JS_CTX_FUN_NAME + "(ctx){  SYS_CTX = ctx;}\n function " + GET_JS_CTX_FUN_NAME + "(){return SYS_CTX;}\n";
+        private static readonly string CTX_INIT = "\n var SYS_CTX;function " + INIT_JS_CTX_FUN_NAME + "(ctx){  SYS_CTX = ctx;};function " + GET_JS_CTX_FUN_NAME + "(){return SYS_CTX;};";
 
         private WebBrowser wb;
 
@@ -29,16 +29,17 @@ namespace HttpTool.Core.Model
         public string IncludeJSContent { get; set; }
 
 
-        public void Init(WebBrowser wb,List<string> IncludeJSLib)
+        public void Init(WebBrowser wb, List<string> IncludeJSLib)
         {
 
             this.wb = wb;
-            this.JsCtx = new object();
             if (IncludeJSLib != null)
             {
                 this.IncludeJSContent = JSLibHelper.GetJSLibContent(IncludeJSLib);
             }
 
+            Tool.SetWebBrowserDocumentText(wb, "<!DOCTYPE html><html><head> <title></title></head><body><script type=\"text/javascript\">var SYS_CTX = {};function getJsCtx(){return SYS_CTX;};</script></body></html>");
+            this.JsCtx = this.wb.Document.InvokeScript("getJsCtx");
         }
         public WebBrowser GetWebBrowser()
         {
