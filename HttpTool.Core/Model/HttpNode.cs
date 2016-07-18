@@ -1,16 +1,18 @@
-﻿using System;
+﻿using HttpTool.Core.Common;
+using HttpTool.Core.JS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace HttpTool.Core.Model
 {
+
+    
     public class HttpNode : AbsNode
     {
-        public override void Exec(FlowContext ctx)
-        {
-            throw new NotImplementedException();
-        }
 
         public string RequestType { get; set; }
 
@@ -18,14 +20,14 @@ namespace HttpTool.Core.Model
         * 处理请求的脚本
         *
         **/
-        public string HandleRequestScript { get; set; }
+        public string ScriptOfHandleRequest { get; set; }
 
 
         /**
         * 处理响应的脚本
         *
         **/
-        public string HandleResponseScript { get; set; }
+        public string ScriptOfHandleResponse { get; set; }
 
 
 
@@ -33,9 +35,85 @@ namespace HttpTool.Core.Model
 
 
         /**
-        * 请求参数串的方法名称
+        * post请求参数串的方法名称
         *
         **/
-        public string FunctionNameOfRequestParsStr { get; set; }
+        public string FunctionNameOfPostParsStr { get; set; }
+
+        public override void Exec(FlowContext ctx)
+        {
+           
+            bool isGet = this.RequestType.ToLower() == "get";
+            WebBrowser wb = ctx.GetWebBrowser();
+            string jsContent = this.GetIncludeJsSnippet(ctx);
+
+            string handleRequestFunName = "f" + Guid.NewGuid().ToString().Replace("-", "");
+            string requestCtxJs = "var requestCtx = {url:'',parsStr:''};function getUrl(){return requestCtx.url;};function getParsStr(){return requestCtx.parsStr;};";
+            string handleRequestFun = "function " + handleRequestFunName + "(){" + this.ScriptOfHandleRequest + "\n requestCtx.url =" + this.FunctionNameOfRequestUrl.Trim() + "();\n";
+            if (!(isGet || string.IsNullOrEmpty(this.FunctionNameOfPostParsStr)))
+            {
+                handleRequestFun += "requestCtx.parsStr = " + this.FunctionNameOfPostParsStr.Trim() + "();\n";
+            }
+            handleRequestFun += "};";
+            string content = string.Format("<!DOCTYPE html><html><head> <title></title></head><body><script type=\"text/javascript\"> {0} \n {1} \n {2} \n</script></body></html>", jsContent, requestCtxJs, handleRequestFun);
+            Tool.SetWebBrowserDocumentText(wb, content);
+
+            object[] args = { ctx.JsCtx };
+            HtmlDocument doc = wb.Document;
+            doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
+            doc.InvokeScript(handleRequestFunName);
+            string url = doc.InvokeScript("getUrl").ToString();
+            string parsStr = doc.InvokeScript("getParsStr").ToString();
+            ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
+
+            object[] pars = { null,ctx };
+            wb.Tag = pars;
+            wb.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(wb_DocumentCompleted);
+            if (isGet)
+            {
+                wb.Navigate(new Uri(url));
+            }
+            else
+            {
+                wb.Navigate(new Uri(url),null,Encoding.UTF8.GetBytes(parsStr),null);
+            }
+           
+        }
+
+        void wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+            WebBrowser wb = (WebBrowser)sender;
+            object[] pars = (object[])wb.Tag;
+            try
+            {
+                if (string.IsNullOrEmpty(this.ScriptOfHandleResponse)) {
+                    return;
+                }
+               
+                FlowContext ctx = (FlowContext)(pars[1]);
+                HtmlDocument doc = wb.Document;
+                string includeJsSnippet = this.GetIncludeJsSnippet(ctx);
+                string funName = "f" + Guid.NewGuid().ToString().Replace("-", "");
+                string fun = includeJsSnippet + "\n function " + funName + "(){ " + this.ScriptOfHandleRequest + " };";
+                Tool.AppendJavaScriptSnippet(doc, fun);
+
+                object[] args = { ctx.JsCtx };
+                doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
+                doc.InvokeScript(funName);
+                ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                wb.DocumentCompleted -= wb_DocumentCompleted;
+                pars[0] = wb;
+            }
+
+        }
+
+
     }
 }

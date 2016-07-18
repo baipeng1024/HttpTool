@@ -59,7 +59,7 @@ namespace HttpTool.Core.JS
                 string val;
                 if (!JS_CACHE.TryGetValue(libName, out val))
                 {
-                    throw new Exception(string.Format("加载脚本:%s 失败", libName));
+                    throw new Exception(string.Format("加载脚本:{0} 失败", libName));
                 }
                 sb.Append(val);
                 sb.Append("\n");

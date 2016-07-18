@@ -13,9 +13,9 @@ namespace HttpTool.Core.Common
         public static WebBrowser SetWebBrowserDocumentText(WebBrowser wb,string html) {
 
             wb.DocumentText = string.Empty;
-            wb.Document.OpenNew(true);
+            wb.Document.OpenNew(false);
             wb.Document.Write(html);
-            wb.Refresh();
+            
             return wb;
 
         }

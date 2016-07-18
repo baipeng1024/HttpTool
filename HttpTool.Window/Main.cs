@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using HttpTool.Core.JS;
 using System.IO;
 using HttpTool.Core.Model;
+using System.Threading;
 
 namespace HttpTool.Window
 {
@@ -18,24 +19,47 @@ namespace HttpTool.Window
         public Main()
         {
             InitializeComponent();
+          
         }
-     
 
-        static FlowContext flowCtx = new FlowContext();
+       
+        static Main()
+        {
+
+            FLOW.IncludeJSLib = new List<string>();
+            FLOW.IncludeJSLib.Add("jsLib\\jquery-1.12.3.min.js");
+            
+        }
+
+        static readonly SingleHttpFlow FLOW = new SingleHttpFlow();
+        WebBrowser wb = new WebBrowser();
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<string> includeJSLib = new List<string>();
-            includeJSLib.Add("jsLib\\jquery-1.12.3.min.js");
-            flowCtx.Init(new WebBrowser(), includeJSLib);
-            JSNode jsNode = new JSNode();
-            jsNode.JS = rtbMyJs.Text;
-            flowCtx.GetWebBrowser().Url = new Uri(tbxUrl.Text.Trim());
-            jsNode.Exec(flowCtx);
+            HttpNode node1 = new HttpNode();
+            node1.RequestType = "get";
+            node1.ScriptOfHandleRequest = "function getUrl(){ return 'http://www.cnblogs.com/';};";
+            node1.ScriptOfHandleResponse = "alert(123);";
+            node1.FunctionNameOfRequestUrl = "getUrl";
+            FLOW.HeadNode = node1;
+            FLOW.Run(null);
+            //wb.DocumentCompleted += wb_DocumentCompleted;
+             
+            //wb.Navigate(tbxUrl.Text.Trim());
+            //for (int i = 0; i < 100000; i++)
+            //{
+            //    Console.WriteLine(i);
+            //}
+           
+        }
 
-        }   
+        
 
-       
-
+        void wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            MessageBox.Show("ok");
+            wb.DocumentCompleted -= wb_DocumentCompleted;
+             
+        }
     }
 }

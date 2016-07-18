@@ -21,10 +21,7 @@ namespace HttpTool.Core.Model
             }
 
             WebBrowser wb = ctx.GetWebBrowser();
-            string jsContent = ctx.GetInitScript();
-            if (this.IncludeJSLib != null) {
-               jsContent += JSLibHelper.GetJSLibContent(this.IncludeJSLib);        
-            }
+            string jsContent = this.GetIncludeJsSnippet(ctx);
 
             string funName = "f" + Guid.NewGuid().ToString().Replace("-", "");
             string jsFun = "function "+ funName +"(){"+ this.JS +" };";

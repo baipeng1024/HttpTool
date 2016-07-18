@@ -16,3 +16,11 @@ D:\my\source\HttpTool\HttpTool.Window\obj\Release\Interop.SHDocVw.dll
 D:\my\source\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.csproj.ResolveComReference.cache
 D:\my\source\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.exe
 D:\my\source\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.pdb
+D:\my\source\HttpTool\HttpTool.Window\bin\Release\HttpTool.Window.exe
+D:\my\source\HttpTool\HttpTool.Window\bin\Release\HttpTool.Window.pdb
+D:\my\source\HttpTool\HttpTool.Window\bin\Release\HttpTool.Core.dll
+D:\my\source\HttpTool\HttpTool.Window\bin\Release\HttpTool.Core.pdb
+D:\my\source\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.csprojResolveAssemblyReference.cache
+D:\my\source\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.Main.resources
+D:\my\source\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.Properties.Resources.resources
+D:\my\source\HttpTool\HttpTool.Window\obj\Release\HttpTool.Window.csproj.GenerateResource.Cache
