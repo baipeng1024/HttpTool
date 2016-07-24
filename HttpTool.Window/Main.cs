@@ -38,8 +38,8 @@ namespace HttpTool.Window
         {
             HttpNode node1 = new HttpNode();
             node1.RequestType = "get";
-            node1.ScriptOfHandleRequest = "function getUrl(){ return 'http://www.cnblogs.com/';};";
-            node1.ScriptOfHandleResponse = "alert(123);";
+            node1.ScriptOfHandleRequest = "function getUrl(){ return '" + tbxUrl.Text.Trim() + "';};";
+            node1.ScriptOfHandleResponse = rtbMyJs.Text.Trim();
             node1.FunctionNameOfRequestUrl = "getUrl";
             FLOW.HeadNode = node1;
             FLOW.Run(null);

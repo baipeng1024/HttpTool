@@ -66,17 +66,26 @@ namespace HttpTool.Core.Model
             string parsStr = doc.InvokeScript("getParsStr").ToString();
             ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
 
-            object[] pars = { null,ctx };
-            wb.Tag = pars;
-            wb.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(wb_DocumentCompleted);
-            if (isGet)
+            if (string.IsNullOrEmpty(parsStr))
             {
-                wb.Navigate(new Uri(url));
+                ctx.Navigate(url,null);
             }
-            else
+            else {
+                ctx.Navigate(url, UTF8Encoding.UTF8.GetBytes(parsStr));
+            }
+
+         
+            if (string.IsNullOrEmpty(this.ScriptOfHandleResponse))
             {
-                wb.Navigate(new Uri(url),null,Encoding.UTF8.GetBytes(parsStr),null);
+                return;
             }
+            string includeJsSnippet = this.GetIncludeJsSnippet(ctx);
+            string funName = "f" + Guid.NewGuid().ToString().Replace("-", "");
+            string fun = includeJsSnippet + "\n function " + funName + "(){ " + this.ScriptOfHandleResponse + " };";
+            Tool.AppendJavaScriptSnippet(doc, fun);
+            doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
+            doc.InvokeScript(funName);
+            ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
            
         }
 
@@ -95,7 +104,7 @@ namespace HttpTool.Core.Model
                 HtmlDocument doc = wb.Document;
                 string includeJsSnippet = this.GetIncludeJsSnippet(ctx);
                 string funName = "f" + Guid.NewGuid().ToString().Replace("-", "");
-                string fun = includeJsSnippet + "\n function " + funName + "(){ " + this.ScriptOfHandleRequest + " };";
+                string fun = includeJsSnippet + "\n function " + funName + "(){ " + this.ScriptOfHandleResponse + " };";
                 Tool.AppendJavaScriptSnippet(doc, fun);
 
                 object[] args = { ctx.JsCtx };
