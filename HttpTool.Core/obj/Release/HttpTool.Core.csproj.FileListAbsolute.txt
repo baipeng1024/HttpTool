@@ -1,9 +1,0 @@
-D:\my\HttpTool\HttpTool.Core\bin\Release\HttpTool.Core.dll
-D:\my\HttpTool\HttpTool.Core\bin\Release\HttpTool.Core.pdb
-D:\my\HttpTool\HttpTool.Core\obj\Release\HttpTool.Core.dll
-D:\my\HttpTool\HttpTool.Core\obj\Release\HttpTool.Core.pdb
-D:\my\source\HttpTool\HttpTool.Core\bin\Release\HttpTool.Core.dll
-D:\my\source\HttpTool\HttpTool.Core\bin\Release\HttpTool.Core.pdb
-D:\my\source\HttpTool\HttpTool.Core\obj\Release\HttpTool.Core.dll
-D:\my\source\HttpTool\HttpTool.Core\obj\Release\HttpTool.Core.pdb
-D:\my\source\HttpTool\HttpTool.Core\obj\Release\HttpTool.Core.csprojResolveAssemblyReference.cache
