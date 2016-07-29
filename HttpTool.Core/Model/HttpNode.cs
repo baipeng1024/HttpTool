@@ -68,13 +68,15 @@ namespace HttpTool.Core.Model
 
             if (string.IsNullOrEmpty(parsStr))
             {
-                ctx.Navigate(url,null);
+                wb.Navigate(url);
             }
             else {
-                ctx.Navigate(url, UTF8Encoding.UTF8.GetBytes(parsStr));
+                wb.Navigate(url, null,UTF8Encoding.UTF8.GetBytes(parsStr),null);
             }
 
-         
+
+            while (wb.ReadyState != WebBrowserReadyState.Complete) Application.DoEvents();
+
             if (string.IsNullOrEmpty(this.ScriptOfHandleResponse))
             {
                 return;
@@ -86,42 +88,13 @@ namespace HttpTool.Core.Model
             doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
             doc.InvokeScript(funName);
             ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
-           
+
+            if (this.NexNode != null) {
+                this.NexNode.Exec(ctx);
+            }
         }
 
-        void wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-            WebBrowser wb = (WebBrowser)sender;
-            object[] pars = (object[])wb.Tag;
-            try
-            {
-                if (string.IsNullOrEmpty(this.ScriptOfHandleResponse)) {
-                    return;
-                }
-               
-                FlowContext ctx = (FlowContext)(pars[1]);
-                HtmlDocument doc = wb.Document;
-                string includeJsSnippet = this.GetIncludeJsSnippet(ctx);
-                string funName = "f" + Guid.NewGuid().ToString().Replace("-", "");
-                string fun = includeJsSnippet + "\n function " + funName + "(){ " + this.ScriptOfHandleResponse + " };";
-                Tool.AppendJavaScriptSnippet(doc, fun);
-
-                object[] args = { ctx.JsCtx };
-                doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
-                doc.InvokeScript(funName);
-                ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                wb.DocumentCompleted -= wb_DocumentCompleted;
-                pars[0] = wb;
-            }
-
-        }
+       
 
 
     }

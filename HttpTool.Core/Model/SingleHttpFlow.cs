@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace HttpTool.Core.Model
@@ -35,19 +36,27 @@ namespace HttpTool.Core.Model
             }
 
             FlowContext ctx = new FlowContext();
-            try
+            Thread t = new Thread(() =>
             {
-                ctx.Init(new WebBrowser(), IncludeJSLib);              
-                ctx.Logger = logger;
-                ctx.Logger.Infor("开始执行。。。");
-                HeadNode.Exec(ctx);
-            }
-            catch (Exception ex)
-            {
-                ctx.Logger.Error(string.Format("{0} 节点执行异常，异常信息:{1}", HeadNode.Name, ex.Message), ex);
-            }
 
-            ctx.Logger.Infor("执行结束。。。");
+                try
+                {
+                    ctx.Init(new WebBrowser(), IncludeJSLib);
+                    ctx.Logger = logger;
+                    ctx.Logger.Infor("开始执行。。。");
+                    HeadNode.Exec(ctx);
+                }
+                catch (Exception ex)
+                {
+                    ctx.Logger.Error(string.Format("{0} 节点执行异常，异常信息:{1}", HeadNode.Name, ex.Message), ex);
+                }
+
+                ctx.Logger.Infor("执行结束。。。");
+
+            });
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+
             return ctx;
 
         }

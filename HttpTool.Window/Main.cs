@@ -42,6 +42,7 @@ namespace HttpTool.Window
             node1.ScriptOfHandleResponse = rtbMyJs.Text.Trim();
             node1.FunctionNameOfRequestUrl = "getUrl";
             FLOW.HeadNode = node1;
+            node1.NexNode = node1;
             FLOW.Run(null);
             //wb.DocumentCompleted += wb_DocumentCompleted;
              
