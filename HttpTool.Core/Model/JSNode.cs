@@ -12,6 +12,12 @@ namespace HttpTool.Core.Model
     public class JSNode : AbsNode
     {
 
+        public JSNode() { }
+
+        public JSNode(string id):base(id){ 
+         
+        }
+
         public string JS { get; set; }
 
         public override void Exec(FlowContext ctx)

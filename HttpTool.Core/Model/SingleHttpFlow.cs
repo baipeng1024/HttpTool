@@ -12,6 +12,20 @@ namespace HttpTool.Core.Model
     public class SingleHttpFlow
     {
 
+        public SingleHttpFlow() {
+            this.id = Guid.NewGuid().ToString();
+        }
+
+        public SingleHttpFlow(string id)
+        {
+            this.id = id;
+        }
+
+        public string id;
+
+        public string GetId() {
+            return id;
+        }
 
         public string Name { get; set; }
 

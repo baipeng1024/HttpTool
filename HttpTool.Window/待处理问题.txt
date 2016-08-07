@@ -1,2 +1,41 @@
 1.http请求编码问题
 2.http文档加载完成事件执行顺序问题
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<flows>
+	 <directory>
+	   <singleHttpFlow id="" name="" desc="" >
+           <jsLibs>
+           	   <include path="" />
+           	</jsLibs>
+           
+           <nodes>
+               <httpNode id="" name="" desc="" requestType="get|post" functionNameOfRequestUrl="" functionNameOfPostParsStr="" >
+               	   <jsLibs>
+           	            <include path="" />
+           	       </jsLibs>
+           	       
+           	       <scriptOfHandleRequest>
+           	       </scriptOfHandleRequest>
+
+           	       <scriptOfHandleResponse>
+           	       </scriptOfHandleResponse>
+               </httpNode>
+
+               <jsNode id="" name="" desc="">
+               	    <jsLibs>
+           	            <include path="" />
+           	       </jsLibs>
+           	       
+           	       <js>
+           	       </js>
+               </jsNode id="" name="" desc="">
+
+               <refNode id="" name="" desc="">
+               </refNode>
+           </nodes>
+	   </singleHttpFlow>
+	 </directory>
+</flows>

@@ -14,6 +14,12 @@ namespace HttpTool.Core.Model
     public class HttpNode : AbsNode
     {
 
+        public HttpNode(string id)
+            : base(id)
+        { 
+         
+        }
+
         public string RequestType { get; set; }
 
         /**
@@ -87,6 +93,7 @@ namespace HttpTool.Core.Model
             Tool.AppendJavaScriptSnippet(doc, fun);
             doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
             doc.InvokeScript(funName);
+  
             ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
 
             if (this.NexNode != null) {

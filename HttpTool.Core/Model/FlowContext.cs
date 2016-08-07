@@ -43,8 +43,6 @@ namespace HttpTool.Core.Model
 
         private WebBrowser wb;
 
-        private volatile bool isSuspend;
-
         public ILogger Logger { get; set; }
 
         public object JsCtx { get; set; }
@@ -76,54 +74,6 @@ namespace HttpTool.Core.Model
         }
 
 
-        public bool Navigate(string url,byte[] parsData) {
-            
-            this.isSuspend = true;
-            Thread t = new Thread(new ParameterizedThreadStart(Navigate));
-            t.IsBackground = true;
-            t.Start(new Navigation(this,url,parsData));
 
-            while (this.isSuspend)
-            {
-                Thread.Sleep(10);
-            }
-
-            return true;
-        
-        }
-
-        static void Navigate(object o) {
-
-            Navigation ngn = (Navigation)o;
-            WebBrowser wb = ngn.Ctx.GetWebBrowser();
-            wb.Tag = ngn.Ctx;
-            wb.DocumentCompleted += wb_DocumentCompleted;
-            try
-            {
-                if (ngn.ParsData == null)
-                {
-                    wb.Navigate(ngn.Uri);
-                }
-                else {
-                    wb.Navigate(ngn.Uri,null,ngn.ParsData,null);
-                }
-            }
-            catch (Exception ex)
-            {
-                wb.DocumentCompleted -= wb_DocumentCompleted;
-                throw;
-            }
-           
-        
-        }
-
-        static void wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            WebBrowser wb = (WebBrowser)sender;
-            FlowContext ctx = (FlowContext)wb.Tag;
-            wb.Tag = null;
-            wb.DocumentCompleted -= wb_DocumentCompleted;
-            ctx.isSuspend = false;
-        }
     }
 }

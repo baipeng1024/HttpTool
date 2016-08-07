@@ -9,7 +9,20 @@ namespace HttpTool.Core.Model
     public abstract class AbsNode
     {
 
-        public string Id { get; set; }
+        public AbsNode() {
+
+            this.id = Guid.NewGuid().ToString();
+        }
+
+
+        public AbsNode(string id) {
+            this.id = id;
+        }
+
+        private string id;
+        public string GetId() {
+            return id;
+        }
 
         public string Name { get; set; }
 
