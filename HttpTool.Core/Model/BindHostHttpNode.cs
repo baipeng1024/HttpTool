@@ -7,6 +7,11 @@ namespace HttpTool.Core.Model
 {
     public class BindHostHttpNode : HttpNode
     {
+        public BindHostHttpNode(string id)
+            : base(id)
+        {
+
+        }
 
         /**
          * 

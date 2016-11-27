@@ -26,8 +26,9 @@ namespace HttpTool.Window
         static Main()
         {
 
-            FLOW.IncludeJSLib = new List<string>();
-            FLOW.IncludeJSLib.Add("jsLib\\jquery-1.12.3.min.js");
+            List<string> jsLibs = new List<string>();
+            jsLibs.Add("jsLib\\jquery-1.12.3.min.js");
+            FLOW.SetIncludeJsLibs(jsLibs);
             
         }
 
@@ -36,13 +37,13 @@ namespace HttpTool.Window
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HttpNode node1 = new HttpNode();
+            HttpNode node1 = new HttpNode("1");
             node1.RequestType = "get";
             node1.ScriptOfHandleRequest = "function getUrl(){ return '" + tbxUrl.Text.Trim() + "';};";
             node1.ScriptOfHandleResponse = rtbMyJs.Text.Trim();
             node1.FunctionNameOfRequestUrl = "getUrl";
             FLOW.HeadNode = node1;
-            node1.NexNode = node1;
+            node1.NextNode = node1;
             FLOW.Run(null);
             //wb.DocumentCompleted += wb_DocumentCompleted;
              

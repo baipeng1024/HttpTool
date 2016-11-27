@@ -11,24 +11,25 @@ namespace HttpTool.Test
 
         static readonly SingleHttpFlow FLOW = new SingleHttpFlow();
 
-        static HttpNodeTest() {
+        static HttpNodeTest()
+        {
 
-            FLOW.IncludeJSLib = new List<string>();
-            FLOW.IncludeJSLib.Add("jsLib\\jquery-1.12.3.min.js");
-          
+            List<string> jsLibs = new List<string>();
+            jsLibs.Add("jsLib\\jquery-1.12.3.min.js");
+            FLOW.SetIncludeJsLibs(jsLibs);
         }
 
         [TestMethod]
         public void HttpNodeGetTest()
         {
-            HttpNode node1 = new HttpNode();
+            HttpNode node1 = new HttpNode("1");
             node1.RequestType = "get";
             node1.ScriptOfHandleRequest = "function getUrl(){ return 'http://www.cnblogs.com/';};";
             node1.ScriptOfHandleResponse = "alert(123);";
             node1.FunctionNameOfRequestUrl = "getUrl";
             FLOW.HeadNode = node1;
             FLOW.Run(null);
-            
+
         }
 
 

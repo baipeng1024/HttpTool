@@ -11,9 +11,6 @@ namespace HttpTool.Core.Model
 {
     public class JSNode : AbsNode
     {
-
-        public JSNode() { }
-
         public JSNode(string id):base(id){ 
          
         }
@@ -40,8 +37,8 @@ namespace HttpTool.Core.Model
             doc.InvokeScript(funName);
             ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
 
-            if (this.NexNode != null) {
-                this.NexNode.Exec(ctx);
+            if (this.NextNode != null) {
+                this.NextNode.Exec(ctx);
             }
         }
 

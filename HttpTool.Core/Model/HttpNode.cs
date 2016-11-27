@@ -96,8 +96,8 @@ namespace HttpTool.Core.Model
   
             ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
 
-            if (this.NexNode != null) {
-                this.NexNode.Exec(ctx);
+            if (this.NextNode != null) {
+                this.NextNode.Exec(ctx);
             }
         }
 

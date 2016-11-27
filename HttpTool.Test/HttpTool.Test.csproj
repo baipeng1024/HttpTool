@@ -57,6 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HttpNodeTest.cs" />
     <Compile Include="SingleHttpFlowTest.cs" />
+    <Compile Include="FlowsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HttpTool.Core\HttpTool.Core.csproj">

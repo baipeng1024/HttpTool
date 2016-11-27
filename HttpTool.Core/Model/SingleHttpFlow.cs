@@ -9,10 +9,11 @@ using System.Windows.Forms;
 namespace HttpTool.Core.Model
 {
 
-    public class SingleHttpFlow
+    public class SingleHttpFlow : IIncludeJsLibs
     {
 
-        public SingleHttpFlow() {
+        public SingleHttpFlow()
+        {
             this.id = Guid.NewGuid().ToString();
         }
 
@@ -23,7 +24,8 @@ namespace HttpTool.Core.Model
 
         public string id;
 
-        public string GetId() {
+        public string GetId()
+        {
             return id;
         }
 
@@ -33,7 +35,7 @@ namespace HttpTool.Core.Model
 
         public AbsNode HeadNode { get; set; }
 
-        public List<string> IncludeJSLib { get; set; }
+        public List<string> includeJSLibs;
 
         public FlowContext Run(ILogger logger)
         {
@@ -55,7 +57,7 @@ namespace HttpTool.Core.Model
 
                 try
                 {
-                    ctx.Init(new WebBrowser(), IncludeJSLib);
+                    ctx.Init(new WebBrowser(), includeJSLibs);
                     ctx.Logger = logger;
                     ctx.Logger.Infor("开始执行。。。");
                     HeadNode.Exec(ctx);
@@ -75,7 +77,30 @@ namespace HttpTool.Core.Model
 
         }
 
+        public void AppendNode(AbsNode node)
+        {
+            if (HeadNode == null)
+            {
+                HeadNode = node;
+            }
+            else
+            {
+                AbsNode tempNode;
+                while ((tempNode = HeadNode.NextNode) != null) ;
+                tempNode.NextNode = node;
+            }
+
+        }
 
 
+        public List<string> GetIncludeJSLibs()
+        {
+            return this.includeJSLibs;
+        }
+
+        public void SetIncludeJsLibs(List<string> jsLibs)
+        {
+            this.includeJSLibs = jsLibs;
+        }
     }
 }

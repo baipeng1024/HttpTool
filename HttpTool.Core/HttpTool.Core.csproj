@@ -50,8 +50,10 @@
     <Compile Include="JS\JSLibHelper.cs" />
     <Compile Include="Model\BindHostHttpNode.cs" />
     <Compile Include="Model\FlowContext.cs" />
+    <Compile Include="Model\Flows.cs" />
     <Compile Include="Model\HttpNode.cs" />
     <Compile Include="Model\AbsNode.cs" />
+    <Compile Include="Model\IIncludeJsLibs.cs" />
     <Compile Include="Model\JSNode.cs" />
     <Compile Include="Model\RefrenceNode.cs" />
     <Compile Include="Model\SingleHttpFlow.cs" />
