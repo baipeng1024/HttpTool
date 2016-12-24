@@ -85,8 +85,8 @@ namespace HttpTool.Core.Model
             }
             else
             {
-                AbsNode tempNode;
-                while ((tempNode = HeadNode.NextNode) != null) ;
+                AbsNode tempNode = HeadNode;
+                while (tempNode.NextNode != null) { tempNode = tempNode.NextNode; }
                 tempNode.NextNode = node;
             }
 
