@@ -11,7 +11,18 @@ namespace HttpTool.Window.controls
     {
         public DirTreeNodeC(string text) {
             this.Text = text;
-            this.ImageIndex = Convert.ToInt32(EIcons.folder_open);
+            ImageKey = ResourcesHelper.GetImgKey(Resource.folder_open);
+            
+        }
+
+
+        public void OnCollapse() {
+            ImageKey = ResourcesHelper.GetImgKey(Resource.folder_close);
+        }
+
+        public void OnExpand()
+        {
+            ImageKey = ResourcesHelper.GetImgKey(Resource.folder_open);
         }
 
     }

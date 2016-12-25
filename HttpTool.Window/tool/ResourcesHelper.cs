@@ -2,41 +2,50 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
 namespace HttpTool.Window.tool
 {
-    public enum EIcons
-    {
-        folder_open = 0,
-    }
+
 
     public class ResourcesHelper
     {
-        public static ImageList ICONS = new ImageList();
-        private const string ICON_PATH = "resources/icons/";
+        public static ImageList IMAGES = new ImageList();
+
 
         static ResourcesHelper()
         {
             Init();
         }
+
         private static void Init()
         {
-
-            string[] icons = Enum.GetNames(typeof(EIcons));
-            foreach (string icon in icons)
+            PropertyInfo[] props = typeof(Resource).GetProperties(BindingFlags.Static | BindingFlags.NonPublic);
+            foreach (PropertyInfo prop in props)
             {
-                try
+                if (prop.PropertyType == typeof(Bitmap))
                 {
-                    ICONS.Images.Add(Image.FromFile(ICON_PATH + icon + ".png"));
-                }
-                catch (Exception)
-                {
-
+                    IMAGES.Images.Add(prop.Name, (Bitmap)Resource.ResourceManager.GetObject(prop.Name, Resource.Culture));
                 }
             }
+
         }
+
+
+        public static string GetImgKey(Bitmap img)
+        {
+            foreach (string key in IMAGES.Images.Keys)
+            {
+                if (IMAGES.Images[key] == img)
+                {
+                    return key;
+                }
+            }
+            return null;
+        }
+
 
     }
 }

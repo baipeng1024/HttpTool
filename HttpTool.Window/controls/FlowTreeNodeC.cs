@@ -1,4 +1,5 @@
 ﻿using HttpTool.Core.Model;
+using HttpTool.Window.tool;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace HttpTool.Window.controls
             else {
                 this.Text = singleHttpFlow.Name;
             }
+           // this.ImageIndex = Convert.ToInt32(EIcon.flow);
         }
     }
 }

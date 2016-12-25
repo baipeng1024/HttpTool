@@ -21,8 +21,10 @@ namespace HttpTool.Window
         public Main()
         {
             InitializeComponent();
-            tvwFlows.Nodes.Add("flows");
-            tvwFlows.ImageList = ResourcesHelper.ICONS;
+            tvwFlows.Nodes.Add(new DirTreeNodeC("flows"));
+            tvwFlows.ImageList = ResourcesHelper.IMAGES;
+           
+            Test();
         }
 
 
@@ -46,6 +48,9 @@ namespace HttpTool.Window
 
         }
 
+        private void Test() {
+             
+        }
 
         private TreeNode FindAndTryBuild(string path)
         {
@@ -99,6 +104,23 @@ namespace HttpTool.Window
                 {
                     node = node.NextNode;
                 }
+            }
+        }
+
+        private void tvwFlows_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node is DirTreeNodeC) {
+                ((DirTreeNodeC)e.Node).OnCollapse();
+                 
+            }
+        }
+
+        private void tvwFlows_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node is DirTreeNodeC)
+            {
+                ((DirTreeNodeC)e.Node).OnExpand();
+                 
             }
         }
     }
