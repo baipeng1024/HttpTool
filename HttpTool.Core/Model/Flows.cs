@@ -297,14 +297,10 @@ namespace HttpTool.Core.Model
                 {
                     LoadJsLibs(httpNode, childNode.ChildNodes);
                 }
-                else if (childTag == "scriptofhandlerequest")
+                else if (childTag == "js")
                 {
-                    httpNode.ScriptOfHandleRequest = childNode.InnerText;
-                }
-                else if (childTag == "scriptofhandleresponse")
-                {
-                    httpNode.ScriptOfHandleResponse = childNode.InnerText;
-                }
+                    httpNode.Js = childNode.InnerText;
+                }                
             }
 
             return httpNode;

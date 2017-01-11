@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.pnl = new System.Windows.Forms.Panel();
+            this.txtName = new HttpTool.Window.controls.TextC();
             this.gbxJSLibs = new System.Windows.Forms.GroupBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lbxIncludes = new System.Windows.Forms.ListBox();
             this.lbxResource = new System.Windows.Forms.ListBox();
+            this.tacDesc = new HttpTool.Window.controls.TextAreaC();
             this.lblDesc = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.pnlNode = new System.Windows.Forms.Panel();
-            this.txtName = new HttpTool.Window.controls.TextC();
-            this.tacDesc = new HttpTool.Window.controls.TextAreaC();
             this.pnl.SuspendLayout();
             this.gbxJSLibs.SuspendLayout();
             this.SuspendLayout();
@@ -56,8 +56,15 @@
             this.pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl.Location = new System.Drawing.Point(0, 0);
             this.pnl.Name = "pnl";
-            this.pnl.Size = new System.Drawing.Size(760, 400);
+            this.pnl.Size = new System.Drawing.Size(760, 632);
             this.pnl.TabIndex = 0;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(61, 10);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(224, 21);
+            this.txtName.TabIndex = 8;
             // 
             // gbxJSLibs
             // 
@@ -80,6 +87,7 @@
             this.btnRemove.TabIndex = 1;
             this.btnRemove.Text = "<";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // btnAdd
             // 
@@ -89,6 +97,7 @@
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = ">";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // lbxIncludes
             // 
@@ -107,6 +116,13 @@
             this.lbxResource.Name = "lbxResource";
             this.lbxResource.Size = new System.Drawing.Size(202, 100);
             this.lbxResource.TabIndex = 0;
+            // 
+            // tacDesc
+            // 
+            this.tacDesc.Location = new System.Drawing.Point(61, 47);
+            this.tacDesc.Name = "tacDesc";
+            this.tacDesc.Size = new System.Drawing.Size(224, 84);
+            this.tacDesc.TabIndex = 5;
             // 
             // lblDesc
             // 
@@ -130,7 +146,7 @@
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(349, 361);
+            this.btnEdit.Location = new System.Drawing.Point(349, 593);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(62, 23);
             this.btnEdit.TabIndex = 1;
@@ -145,22 +161,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlNode.Location = new System.Drawing.Point(0, 137);
             this.pnlNode.Name = "pnlNode";
-            this.pnlNode.Size = new System.Drawing.Size(760, 222);
+            this.pnlNode.Size = new System.Drawing.Size(760, 454);
             this.pnlNode.TabIndex = 0;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(61, 10);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(224, 21);
-            this.txtName.TabIndex = 8;
-            // 
-            // tacDesc
-            // 
-            this.tacDesc.Location = new System.Drawing.Point(61, 47);
-            this.tacDesc.Name = "tacDesc";
-            this.tacDesc.Size = new System.Drawing.Size(224, 84);
-            this.tacDesc.TabIndex = 5;
             // 
             // NodeC
             // 
@@ -168,7 +170,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl);
             this.Name = "NodeC";
-            this.Size = new System.Drawing.Size(760, 400);
+            this.Size = new System.Drawing.Size(760, 632);
             this.pnl.ResumeLayout(false);
             this.pnl.PerformLayout();
             this.gbxJSLibs.ResumeLayout(false);

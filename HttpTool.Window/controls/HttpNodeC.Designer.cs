@@ -63,6 +63,9 @@
             // cbxRequestType
             // 
             this.cbxRequestType.FormattingEnabled = true;
+            this.cbxRequestType.Items.AddRange(new object[] {
+            "get",
+            "post"});
             this.cbxRequestType.Location = new System.Drawing.Point(87, 8);
             this.cbxRequestType.Name = "cbxRequestType";
             this.cbxRequestType.Size = new System.Drawing.Size(209, 20);
@@ -113,7 +116,7 @@
             // 
             this.tacScript.Location = new System.Drawing.Point(61, 87);
             this.tacScript.Name = "tacScript";
-            this.tacScript.Size = new System.Drawing.Size(692, 131);
+            this.tacScript.Size = new System.Drawing.Size(692, 363);
             this.tacScript.TabIndex = 6;
             // 
             // HttpNodeC

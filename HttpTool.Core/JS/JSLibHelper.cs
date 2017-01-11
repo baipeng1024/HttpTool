@@ -51,6 +51,11 @@ namespace HttpTool.Core.JS
             }
         }
 
+        public static string[] GetJSLibs()
+        {
+            return JS_CACHE.Keys.ToArray();
+        }
+
         public static string GetJSLibContent(List<string> jsLibs)
         {
             StringBuilder sb = new StringBuilder("\n");

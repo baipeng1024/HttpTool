@@ -23,8 +23,6 @@ namespace HttpTool.Window
             InitializeComponent();
             tvwFlows.Nodes.Add(new DirTreeNodeC("flows"));
             tvwFlows.ImageList = ResourcesHelper.IMAGES;
-           
-            Test();
         }
 
 
@@ -42,15 +40,12 @@ namespace HttpTool.Window
 
             foreach (KeyValuePair<string, SingleHttpFlow> item in flows.HttpFlows)
             {
-                FindAndTryBuild(item.Key).Nodes.Add(new FlowTreeNodeC(item.Value));
+                FindAndTryBuild(item.Key).Nodes.Add(new FlowTreeNodeC(item.Value, spcRight.Panel2));
             }
             
 
         }
 
-        private void Test() {
-             
-        }
 
         private TreeNode FindAndTryBuild(string path)
         {
@@ -93,11 +88,11 @@ namespace HttpTool.Window
                 {
                     if (node.Parent == null)
                     {
-                        node.Nodes.Add((node = new TreeNode(name)));
+                        node.Nodes.Add((node = new DirTreeNodeC(name)));
                     }
                     else
                     {
-                        node.Parent.Nodes.Add((node = new TreeNode(name)));
+                        node.Parent.Nodes.Add((node = new DirTreeNodeC(name)));
                     }
                 }
                 else
@@ -123,5 +118,21 @@ namespace HttpTool.Window
                  
             }
         }
+
+        private void tvwFlows_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            
+        }
+
+        private void tvwFlows_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node is FlowTreeNodeC)
+            {
+                flpnl.Controls.Clear();
+                flpnl.Controls.AddRange(((FlowTreeNodeC)e.Node).BreviaryNodes);
+            }
+        }
+
+
     }
 }

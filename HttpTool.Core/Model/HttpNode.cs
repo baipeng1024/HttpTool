@@ -20,22 +20,7 @@ namespace HttpTool.Core.Model
          
         }
 
-        public string RequestType { get; set; }
-
-        /**
-        * 处理请求的脚本
-        *
-        **/
-        public string ScriptOfHandleRequest { get; set; }
-
-
-        /**
-        * 处理响应的脚本
-        *
-        **/
-        public string ScriptOfHandleResponse { get; set; }
-
-
+        public string RequestType { get; set; }    
 
         public string FunctionNameOfRequestUrl { get; set; }
 
@@ -46,6 +31,8 @@ namespace HttpTool.Core.Model
         **/
         public string FunctionNameOfPostParsStr { get; set; }
 
+        public string Js { get; set; }
+
         public override void Exec(FlowContext ctx)
         {
            
@@ -55,7 +42,7 @@ namespace HttpTool.Core.Model
 
             string handleRequestFunName = "f" + Guid.NewGuid().ToString().Replace("-", "");
             string requestCtxJs = "var requestCtx = {url:'',parsStr:''};function getUrl(){return requestCtx.url;};function getParsStr(){return requestCtx.parsStr;};";
-            string handleRequestFun = "function " + handleRequestFunName + "(){" + this.ScriptOfHandleRequest + "\n requestCtx.url =" + this.FunctionNameOfRequestUrl.Trim() + "();\n";
+            string handleRequestFun = "function " + handleRequestFunName + "(){" + this.Js + "\n requestCtx.url =" + this.FunctionNameOfRequestUrl.Trim() + "();\n";
             if (!(isGet || string.IsNullOrEmpty(this.FunctionNameOfPostParsStr)))
             {
                 handleRequestFun += "requestCtx.parsStr = " + this.FunctionNameOfPostParsStr.Trim() + "();\n";
@@ -82,14 +69,10 @@ namespace HttpTool.Core.Model
 
 
             while (wb.ReadyState != WebBrowserReadyState.Complete) Application.DoEvents();
-
-            if (string.IsNullOrEmpty(this.ScriptOfHandleResponse))
-            {
-                return;
-            }
+             
             string includeJsSnippet = this.GetIncludeJsSnippet(ctx);
             string funName = "f" + Guid.NewGuid().ToString().Replace("-", "");
-            string fun = includeJsSnippet + "\n function " + funName + "(){ " + this.ScriptOfHandleResponse + " };";
+            string fun = includeJsSnippet + "\n function " + funName + "(){ " + this.Js + " };";
             Tool.AppendJavaScriptSnippet(doc, fun);
             doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
             doc.InvokeScript(funName);

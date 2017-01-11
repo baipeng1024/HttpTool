@@ -47,6 +47,7 @@
             this.spcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.spcMain.IsSplitterFixed = true;
             this.spcMain.Location = new System.Drawing.Point(0, 28);
             this.spcMain.Name = "spcMain";
             // 
@@ -70,10 +71,13 @@
             this.tvwFlows.TabIndex = 0;
             this.tvwFlows.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvwFlows_BeforeCollapse);
             this.tvwFlows.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvwFlows_BeforeExpand);
+            this.tvwFlows.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwFlows_AfterSelect);
             // 
             // spcRight
             // 
+            this.spcRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.spcRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spcRight.IsSplitterFixed = true;
             this.spcRight.Location = new System.Drawing.Point(0, 0);
             this.spcRight.Name = "spcRight";
             this.spcRight.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -91,7 +95,7 @@
             this.flpnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpnl.Location = new System.Drawing.Point(0, 0);
             this.flpnl.Name = "flpnl";
-            this.flpnl.Size = new System.Drawing.Size(785, 54);
+            this.flpnl.Size = new System.Drawing.Size(783, 52);
             this.flpnl.TabIndex = 0;
             this.flpnl.WrapContents = false;
             // 
