@@ -15,6 +15,8 @@ namespace HttpTool.Core.Model
          
         }
 
+        public JSNode() { }
+
         public string JS { get; set; }
 
         public override void Exec(FlowContext ctx)

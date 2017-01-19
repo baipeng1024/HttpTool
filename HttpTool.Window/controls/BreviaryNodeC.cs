@@ -19,20 +19,25 @@ namespace HttpTool.Window.controls
 
         public AbsNode Node { get; set; }
 
+        public NodeC ContentNodeC { get; set; }
 
         public BreviaryNodeC(AbsNode node, FlowTreeNodeC parent)
         {
             InitializeComponent();
             this.Node = node;
             this.parent = parent;
-            this.Name = node.Name;
+            lblName.Text = node.Name;
+            ctxMenu.Hide();
+
             if (node is JSNode)
             {
                 this.pbxIcon.Image = Resource.js;
+                ContentNodeC = new JSNodeC((JSNode)node);
             }
             else if (node is HttpNode)
             {
                 this.pbxIcon.Image = Resource.http;
+                ContentNodeC = new HttpNodeC((HttpNode)node);
             }
 
             this.MouseEnter += OnMouseEnter;
@@ -45,7 +50,7 @@ namespace HttpTool.Window.controls
                 c.MouseDown += OnMouseDown;
             }
 
-            
+
 
         }
 
@@ -55,6 +60,20 @@ namespace HttpTool.Window.controls
             this.BackColor = SystemColors.Control;
         }
 
+
+        public void Selected()
+        {
+            BackColor = Color.Red;
+            isSelected = true;
+            parent.SelectNotice(this);
+
+        }
+
+        public void AddFlowNodeCallback(AbsNode node)
+        {
+            BreviaryNodeC newBreviaryNodeC = parent.AddNode(node, this);
+            newBreviaryNodeC.Selected();
+        }
 
 
 
@@ -72,8 +91,11 @@ namespace HttpTool.Window.controls
             }
             else if (e.Button == MouseButtons.Right)
             {
-                //this.ContextMenuStrip
-               
+
+                if (this.isSelected)
+                {
+                    ctxMenu.Show();
+                }
             }
 
         }
@@ -95,19 +117,27 @@ namespace HttpTool.Window.controls
                 return;
             }
             this.BackColor = SystemColors.Control;
+            ctxMenu.Hide();
         }
 
-        
+
 
         private void AddMenuItem_Click(object sender, EventArgs e)
         {
-
+            AddFlowNode win = new AddFlowNode(this);
+            win.ShowDialog();
         }
 
         private void DeleteMenuItem_Click(object sender, EventArgs e)
         {
-
+            DialogResult result = MessageBox.Show("是否要移除：" + Node.Name, "提示", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                parent.RemoveNode(this);
+            }
         }
+
+
 
     }
 }

@@ -20,7 +20,8 @@ namespace HttpTool.Window.controls
 
         private AbsNode node;
 
-        protected NodeC() {
+        protected NodeC()
+        {
             InitializeComponent();
         }
 
@@ -28,7 +29,7 @@ namespace HttpTool.Window.controls
         {
             InitializeComponent();
             btnEdit.Text = EDIT_TEXT;
-            this.node = node;         
+            this.node = node;
         }
 
         protected virtual void Load()

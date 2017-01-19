@@ -48,6 +48,7 @@
     </Compile>
     <Compile Include="JS\JSLibHelper.cs" />
     <Compile Include="Model\BindHostHttpNode.cs" />
+    <Compile Include="Model\EFlowNodeType.cs" />
     <Compile Include="Model\FlowContext.cs" />
     <Compile Include="Model\Flows.cs" />
     <Compile Include="Model\HttpNode.cs" />

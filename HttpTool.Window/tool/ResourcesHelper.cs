@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HttpTool.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,8 +14,7 @@ namespace HttpTool.Window.tool
     public class ResourcesHelper
     {
         public static ImageList IMAGES = new ImageList();
-         
-
+      
 
         static ResourcesHelper()
         {

@@ -40,7 +40,6 @@
             // 
             // pbxIcon
             // 
-            this.pbxIcon.ContextMenuStrip = this.ctxMenu;
             this.pbxIcon.Image = global::HttpTool.Window.Resource.http;
             this.pbxIcon.Location = new System.Drawing.Point(4, 6);
             this.pbxIcon.Name = "pbxIcon";
@@ -55,26 +54,25 @@
             this.AddMenuItem,
             this.DeleteMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(153, 70);
+            this.ctxMenu.Size = new System.Drawing.Size(101, 48);
             // 
             // AddMenuItem
             // 
             this.AddMenuItem.Name = "AddMenuItem";
-            this.AddMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddMenuItem.Size = new System.Drawing.Size(100, 22);
             this.AddMenuItem.Text = "新增";
             this.AddMenuItem.Click += new System.EventHandler(this.AddMenuItem_Click);
             // 
             // DeleteMenuItem
             // 
             this.DeleteMenuItem.Name = "DeleteMenuItem";
-            this.DeleteMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DeleteMenuItem.Size = new System.Drawing.Size(100, 22);
             this.DeleteMenuItem.Text = "删除";
             this.DeleteMenuItem.Click += new System.EventHandler(this.DeleteMenuItem_Click);
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.ContextMenuStrip = this.ctxMenu;
             this.lblName.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblName.Location = new System.Drawing.Point(46, 23);
             this.lblName.Name = "lblName";

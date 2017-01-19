@@ -26,7 +26,7 @@ namespace HttpTool.Window.controls
         protected override void Load()
         {
             base.Load();
-            if (node.RequestType.ToLower() == "post")
+            if (node.RequestType != null && node.RequestType.ToLower() == "post")
             {
                 cbxRequestType.SelectedItem = "post";
             }

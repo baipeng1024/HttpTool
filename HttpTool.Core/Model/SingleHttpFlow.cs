@@ -92,6 +92,21 @@ namespace HttpTool.Core.Model
 
         }
 
+        public void RemoveNode(AbsNode node)
+        {
+            AbsNode tempNode = HeadNode;
+            while (tempNode.NextNode != null)
+            {
+                if (tempNode.NextNode == node)
+                {
+                    node.NextNode = tempNode.NextNode.NextNode;
+                    tempNode.NextNode = node;
+                    return;
+                }
+                tempNode = tempNode.NextNode;
+            }
+        }
+
 
         public List<string> GetIncludeJSLibs()
         {

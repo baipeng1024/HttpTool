@@ -15,8 +15,7 @@ namespace HttpTool.Window
 {
     public partial class Main : Form
     {
-
-        private Flows flows = new Flows();
+         
 
         public Main()
         {
@@ -30,7 +29,7 @@ namespace HttpTool.Window
         {
             try
             {
-                flows.Load("flows.xml");
+                GlobalObj.FLOWS.Load("flows.xml");
             }
             catch (Exception ex)
             {
@@ -38,9 +37,9 @@ namespace HttpTool.Window
                 return;
             }
 
-            foreach (KeyValuePair<string, SingleHttpFlow> item in flows.HttpFlows)
+            foreach (KeyValuePair<string, SingleHttpFlow> item in GlobalObj.FLOWS.HttpFlows)
             {
-                FindAndTryBuild(item.Key).Nodes.Add(new FlowTreeNodeC(item.Value, spcRight.Panel2));
+                FindAndTryBuild(item.Key).Nodes.Add(new FlowTreeNodeC(item.Value,flpnl,spcRight.Panel2));
             }
             
 

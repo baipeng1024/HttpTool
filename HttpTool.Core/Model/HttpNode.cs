@@ -20,6 +20,8 @@ namespace HttpTool.Core.Model
          
         }
 
+        public HttpNode() { }
+
         public string RequestType { get; set; }    
 
         public string FunctionNameOfRequestUrl { get; set; }

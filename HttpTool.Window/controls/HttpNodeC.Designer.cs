@@ -62,6 +62,7 @@
             // 
             // cbxRequestType
             // 
+            this.cbxRequestType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxRequestType.FormattingEnabled = true;
             this.cbxRequestType.Items.AddRange(new object[] {
             "get",

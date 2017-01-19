@@ -32,7 +32,7 @@ namespace HttpTool.Window.controls
         {
             this.text = text;
             tbx.Text = text;
-            tbx.ForeColor = SystemColors.Control;
+            tbx.ForeColor = SystemColors.WindowText;
         }
 
         public string GetText()
@@ -43,7 +43,7 @@ namespace HttpTool.Window.controls
         private void OnEnter(object sender, EventArgs e)
         {
             tbx.Text = text;
-            tbx.ForeColor = SystemColors.Control;
+            tbx.ForeColor = SystemColors.WindowText;
         }
 
         private void OnLeave(object sender, EventArgs e)
