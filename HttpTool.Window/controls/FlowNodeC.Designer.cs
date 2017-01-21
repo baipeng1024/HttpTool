@@ -1,6 +1,6 @@
 ﻿namespace HttpTool.Window.controls
 {
-    partial class FlowBeginNodeC
+    partial class FlowNodeC
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -41,14 +41,14 @@
             // 
             this.tacRemark.Location = new System.Drawing.Point(5, 4);
             this.tacRemark.Name = "tacRemark";
-            this.tacRemark.Size = new System.Drawing.Size(750, 215);
+            this.tacRemark.Size = new System.Drawing.Size(750, 446);
             this.tacRemark.TabIndex = 0;
             // 
-            // FlowBeginNodeC
+            // StartNodeC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "FlowBeginNodeC";
+            this.Name = "StartNodeC";
             this.pnl.ResumeLayout(false);
             this.pnl.PerformLayout();
             this.pnlNode.ResumeLayout(false);

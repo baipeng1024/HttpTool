@@ -28,18 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.spcMain = new System.Windows.Forms.SplitContainer();
             this.tvwFlows = new System.Windows.Forms.TreeView();
             this.spcRight = new System.Windows.Forms.SplitContainer();
             this.flpnl = new System.Windows.Forms.FlowLayoutPanel();
             this.menus = new System.Windows.Forms.MenuStrip();
             this.菜单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.创建目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.创建流程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.创建流程节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.移除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spcMain.Panel1.SuspendLayout();
             this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
             this.spcRight.Panel1.SuspendLayout();
             this.spcRight.SuspendLayout();
             this.menus.SuspendLayout();
+            this.ctxMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // spcMain
@@ -72,6 +79,7 @@
             this.tvwFlows.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvwFlows_BeforeCollapse);
             this.tvwFlows.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvwFlows_BeforeExpand);
             this.tvwFlows.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwFlows_AfterSelect);
+            this.tvwFlows.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tvwFlows_MouseDown);
             // 
             // spcRight
             // 
@@ -116,6 +124,40 @@
             this.菜单ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.菜单ToolStripMenuItem.Text = "菜单";
             // 
+            // ctxMenu
+            // 
+            this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.创建目录ToolStripMenuItem,
+            this.创建流程ToolStripMenuItem,
+            this.创建流程节点ToolStripMenuItem,
+            this.移除ToolStripMenuItem});
+            this.ctxMenu.Name = "ctxMenu";
+            this.ctxMenu.Size = new System.Drawing.Size(149, 92);
+            // 
+            // 创建目录ToolStripMenuItem
+            // 
+            this.创建目录ToolStripMenuItem.Name = "创建目录ToolStripMenuItem";
+            this.创建目录ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.创建目录ToolStripMenuItem.Text = "创建目录";
+            // 
+            // 创建流程ToolStripMenuItem
+            // 
+            this.创建流程ToolStripMenuItem.Name = "创建流程ToolStripMenuItem";
+            this.创建流程ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.创建流程ToolStripMenuItem.Text = "创建流程";
+            // 
+            // 创建流程节点ToolStripMenuItem
+            // 
+            this.创建流程节点ToolStripMenuItem.Name = "创建流程节点ToolStripMenuItem";
+            this.创建流程节点ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.创建流程节点ToolStripMenuItem.Text = "创建流程节点";
+            // 
+            // 移除ToolStripMenuItem
+            // 
+            this.移除ToolStripMenuItem.Name = "移除ToolStripMenuItem";
+            this.移除ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.移除ToolStripMenuItem.Text = "移除";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -136,6 +178,7 @@
             this.spcRight.ResumeLayout(false);
             this.menus.ResumeLayout(false);
             this.menus.PerformLayout();
+            this.ctxMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,5 +192,10 @@
         private System.Windows.Forms.ToolStripMenuItem 菜单ToolStripMenuItem;
         private System.Windows.Forms.SplitContainer spcRight;
         private System.Windows.Forms.FlowLayoutPanel flpnl;
+        private System.Windows.Forms.ContextMenuStrip ctxMenu;
+        private System.Windows.Forms.ToolStripMenuItem 创建目录ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 创建流程ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 创建流程节点ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 移除ToolStripMenuItem;
     }
 }

@@ -11,7 +11,7 @@ namespace HttpTool.Core.Model
 {
 
     
-    public class HttpNode : AbsNode
+    public class HttpNode : AbsFlowNode
     {
 
         public HttpNode(string id)

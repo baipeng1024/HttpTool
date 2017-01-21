@@ -6,17 +6,17 @@ using System.Text;
 
 namespace HttpTool.Core.Model
 {
-    public abstract class AbsNode : IIncludeJsLibs
+    public abstract class AbsFlowNode : IIncludeJsLibs
     {
 
-        public AbsNode()
+        public AbsFlowNode()
         {
 
             this.id = Guid.NewGuid().ToString();
         }
 
 
-        public AbsNode(string id)
+        public AbsFlowNode(string id)
         {
             this.id = id;
         }
@@ -30,7 +30,7 @@ namespace HttpTool.Core.Model
         public string Name { get; set; }
 
         public string Desc { get; set; }
-        public AbsNode NextNode { get; set; }
+        public AbsFlowNode NextNode { get; set; }
 
         public List<string> includeJSLibs;
 

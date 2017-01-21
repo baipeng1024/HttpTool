@@ -12,12 +12,10 @@ namespace HttpTool.Window.controls
 {
     public partial class HttpNodeC : NodeC
     {
-        private HttpNode node;
 
         public HttpNodeC(HttpNode node)
             : base(node)
         {
-            this.node = node;
             InitializeComponent();
             Load();
             LockEdit();
@@ -26,11 +24,13 @@ namespace HttpTool.Window.controls
         protected override void Load()
         {
             base.Load();
+            HttpNode node = (HttpNode)flowNode;
             if (node.RequestType != null && node.RequestType.ToLower() == "post")
             {
                 cbxRequestType.SelectedItem = "post";
             }
-            else {
+            else
+            {
                 cbxRequestType.SelectedItem = "get";
             }
 
@@ -60,6 +60,7 @@ namespace HttpTool.Window.controls
         {
             if (base.Save())
             {
+                HttpNode node = (HttpNode)flowNode;
                 node.RequestType = (string)cbxRequestType.SelectedItem;
                 node.FunctionNameOfRequestUrl = tcRequestUrl.GetText();
                 node.FunctionNameOfPostParsStr = tcPostPars.GetText();

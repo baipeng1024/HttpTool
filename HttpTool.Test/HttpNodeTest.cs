@@ -21,14 +21,7 @@ namespace HttpTool.Test
 
         [TestMethod]
         public void HttpNodeGetTest()
-        {
-            HttpNode node1 = new HttpNode("1");
-            node1.RequestType = "get";
-            node1.ScriptOfHandleRequest = "function getUrl(){ return 'http://www.cnblogs.com/';};";
-            node1.ScriptOfHandleResponse = "alert(123);";
-            node1.FunctionNameOfRequestUrl = "getUrl";
-            FLOW.HeadNode = node1;
-            FLOW.Run(null);
+        { 
 
         }
 

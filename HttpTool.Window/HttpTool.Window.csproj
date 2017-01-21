@@ -76,11 +76,11 @@
     </Compile>
     <Compile Include="controls\ComboBoxItem.cs" />
     <Compile Include="controls\DirTreeNodeC.cs" />
-    <Compile Include="controls\FlowBeginNodeC.cs">
+    <Compile Include="controls\FlowNodeC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\FlowBeginNodeC.Designer.cs">
-      <DependentUpon>FlowBeginNodeC.cs</DependentUpon>
+    <Compile Include="controls\FlowNodeC.Designer.cs">
+      <DependentUpon>FlowNodeC.cs</DependentUpon>
     </Compile>
     <Compile Include="controls\FlowTreeNodeC.cs" />
     <Compile Include="controls\HttpNodeC.cs">
@@ -143,8 +143,8 @@
     <EmbeddedResource Include="controls\BreviaryNodeC.resx">
       <DependentUpon>BreviaryNodeC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\FlowBeginNodeC.resx">
-      <DependentUpon>FlowBeginNodeC.cs</DependentUpon>
+    <EmbeddedResource Include="controls\FlowNodeC.resx">
+      <DependentUpon>FlowNodeC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controls\HttpNodeC.resx">
       <DependentUpon>HttpNodeC.cs</DependentUpon>

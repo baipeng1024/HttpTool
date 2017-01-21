@@ -17,19 +17,23 @@ namespace HttpTool.Window.controls
         private FlowTreeNodeC parent;
 
 
-        public AbsNode Node { get; set; }
+        public AbsFlowNode Node { get; set; }
 
         public NodeC ContentNodeC { get; set; }
 
-        public BreviaryNodeC(AbsNode node, FlowTreeNodeC parent)
+        public BreviaryNodeC(AbsFlowNode node, FlowTreeNodeC parent)
         {
             InitializeComponent();
             this.Node = node;
             this.parent = parent;
             lblName.Text = node.Name;
             ctxMenu.Hide();
-
-            if (node is JSNode)
+            if (node is SingleHttpFlow)
+            {
+                this.pbxIcon.Image = Resource.flow;
+                ContentNodeC = new FlowNodeC((SingleHttpFlow)node);
+            }
+            else if (node is JSNode)
             {
                 this.pbxIcon.Image = Resource.js;
                 ContentNodeC = new JSNodeC((JSNode)node);
@@ -69,7 +73,7 @@ namespace HttpTool.Window.controls
 
         }
 
-        public void AddFlowNodeCallback(AbsNode node)
+        public void AddFlowNodeCallback(AbsFlowNode node)
         {
             BreviaryNodeC newBreviaryNodeC = parent.AddNode(node, this);
             newBreviaryNodeC.Selected();
@@ -94,6 +98,14 @@ namespace HttpTool.Window.controls
 
                 if (this.isSelected)
                 {
+                    if (Node is SingleHttpFlow)
+                    {
+                        ctxMenu.Items[1].Visible = false;
+                    }
+                    else
+                    {
+                        ctxMenu.Items[1].Visible = true;
+                    }
                     ctxMenu.Show();
                 }
             }

@@ -15,12 +15,13 @@ namespace HttpTool.Window
 {
     public partial class Main : Form
     {
-         
+
 
         public Main()
         {
             InitializeComponent();
-            tvwFlows.Nodes.Add(new DirTreeNodeC("flows"));
+            ctxMenu.Hide();
+            tvwFlows.Nodes.Add(new DirTreeNodeC("flows", ctxMenu));
             tvwFlows.ImageList = ResourcesHelper.IMAGES;
         }
 
@@ -39,9 +40,9 @@ namespace HttpTool.Window
 
             foreach (KeyValuePair<string, SingleHttpFlow> item in GlobalObj.FLOWS.HttpFlows)
             {
-                FindAndTryBuild(item.Key).Nodes.Add(new FlowTreeNodeC(item.Value,flpnl,spcRight.Panel2));
+                FindAndTryBuild(item.Key).Nodes.Add(new FlowTreeNodeC(item.Value, flpnl, spcRight.Panel2, ctxMenu));
             }
-            
+
 
         }
 
@@ -74,7 +75,7 @@ namespace HttpTool.Window
                         name = (string)nameIter.Current;
                         if (node.FirstNode == null)
                         {
-                            node.Nodes.Add(new DirTreeNodeC(name));
+                            node.Nodes.Add(new DirTreeNodeC(name, ctxMenu));
                         }
                         node = node.FirstNode;
                     }
@@ -87,11 +88,11 @@ namespace HttpTool.Window
                 {
                     if (node.Parent == null)
                     {
-                        node.Nodes.Add((node = new DirTreeNodeC(name)));
+                        node.Nodes.Add((node = new DirTreeNodeC(name, ctxMenu)));
                     }
                     else
                     {
-                        node.Parent.Nodes.Add((node = new DirTreeNodeC(name)));
+                        node.Parent.Nodes.Add((node = new DirTreeNodeC(name, ctxMenu)));
                     }
                 }
                 else
@@ -103,9 +104,10 @@ namespace HttpTool.Window
 
         private void tvwFlows_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
-            if (e.Node is DirTreeNodeC) {
+            if (e.Node is DirTreeNodeC)
+            {
                 ((DirTreeNodeC)e.Node).OnCollapse();
-                 
+
             }
         }
 
@@ -114,13 +116,13 @@ namespace HttpTool.Window
             if (e.Node is DirTreeNodeC)
             {
                 ((DirTreeNodeC)e.Node).OnExpand();
-                 
+
             }
         }
 
         private void tvwFlows_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            
+
         }
 
         private void tvwFlows_AfterSelect(object sender, TreeViewEventArgs e)
@@ -130,6 +132,32 @@ namespace HttpTool.Window
                 flpnl.Controls.Clear();
                 flpnl.Controls.AddRange(((FlowTreeNodeC)e.Node).BreviaryNodes);
             }
+        }
+
+        private void tvwFlows_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                TreeNode currentNode = tvwFlows.GetNodeAt(new Point(e.X, e.Y));
+                if (currentNode != null)
+                {
+                    if (currentNode is DirTreeNodeC)
+                    {
+                        ctxMenu.Items[0].Visible = true;
+                        ctxMenu.Items[1].Visible = true;
+                        ctxMenu.Items[2].Visible = true;
+                        ctxMenu.Items[3].Visible = true;
+                    }
+                    else if (currentNode is FlowTreeNodeC)
+                    {
+                        ctxMenu.Items[0].Visible = false;
+                        ctxMenu.Items[1].Visible = false;
+                        ctxMenu.Items[2].Visible = false;
+                        ctxMenu.Items[3].Visible = true;
+                    }
+                }
+            }
+
         }
 
 

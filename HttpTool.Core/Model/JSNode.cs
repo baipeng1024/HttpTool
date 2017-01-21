@@ -9,7 +9,7 @@ using HttpTool.Core.Common;
 
 namespace HttpTool.Core.Model
 {
-    public class JSNode : AbsNode
+    public class JSNode : AbsFlowNode
     {
         public JSNode(string id):base(id){ 
          

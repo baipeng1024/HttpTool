@@ -52,11 +52,12 @@
     <Compile Include="Model\FlowContext.cs" />
     <Compile Include="Model\Flows.cs" />
     <Compile Include="Model\HttpNode.cs" />
-    <Compile Include="Model\AbsNode.cs" />
+    <Compile Include="Model\AbsFlowNode.cs" />
     <Compile Include="Model\IIncludeJsLibs.cs" />
     <Compile Include="Model\JSNode.cs" />
     <Compile Include="Model\RefrenceNode.cs" />
     <Compile Include="Model\SingleHttpFlow.cs" />
+    <Compile Include="Model\StartNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

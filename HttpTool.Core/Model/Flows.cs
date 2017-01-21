@@ -11,13 +11,13 @@ namespace HttpTool.Core.Model
 
         public List<KeyValuePair<string, SingleHttpFlow>> HttpFlows { get; set; }
 
-        public List<KeyValuePair<string, AbsNode>> IndependentNodes { get; set; }
+        public List<KeyValuePair<string, AbsFlowNode>> IndependentNodes { get; set; }
 
 
         public void Load(string filePath)
         {
             HttpFlows = new List<KeyValuePair<string, SingleHttpFlow>>();
-            IndependentNodes = new List<KeyValuePair<string, AbsNode>>();
+            IndependentNodes = new List<KeyValuePair<string, AbsFlowNode>>();
             XmlDocument doc = new XmlDocument();
 
             try
@@ -43,12 +43,12 @@ namespace HttpTool.Core.Model
                 else if (tag == "httpnode")
                 {
                     HttpNode httpNode = ConvertToHttpNode(childNode);
-                    IndependentNodes.Add(new KeyValuePair<string, AbsNode>("", httpNode));
+                    IndependentNodes.Add(new KeyValuePair<string, AbsFlowNode>("", httpNode));
                 }
                 else if (tag == "jsnode")
                 {
                     JSNode jsNode = ConvertToJSNode(childNode);
-                    IndependentNodes.Add(new KeyValuePair<string, AbsNode>("", jsNode));
+                    IndependentNodes.Add(new KeyValuePair<string, AbsFlowNode>("", jsNode));
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace HttpTool.Core.Model
                 XmlNode nodesNode = doc.CreateNode(XmlNodeType.Element, "nodes", null);
                 flowNode.AppendChild(nodesNode);
 
-                AbsNode absNode = kv.Value.HeadNode;
+                AbsFlowNode absNode = kv.Value.HeadNode;
                 while (absNode != null)
                 {
                     if (absNode is JSNode)
@@ -154,12 +154,12 @@ namespace HttpTool.Core.Model
                 else if (tag == "httpnode")
                 {
                     HttpNode httpNode = ConvertToHttpNode(childNode);
-                    IndependentNodes.Add(new KeyValuePair<string, AbsNode>(path, httpNode));
+                    IndependentNodes.Add(new KeyValuePair<string, AbsFlowNode>(path, httpNode));
                 }
                 else if (tag == "jsnode")
                 {
                     JSNode jsNode = ConvertToJSNode(childNode);
-                    IndependentNodes.Add(new KeyValuePair<string, AbsNode>(path, jsNode));
+                    IndependentNodes.Add(new KeyValuePair<string, AbsFlowNode>(path, jsNode));
                 }
             }
         }
@@ -365,7 +365,7 @@ namespace HttpTool.Core.Model
         }
 
 
-        private void AppendXmlAttributes(XmlDocument doc, XmlNode xmlNode, AbsNode node)
+        private void AppendXmlAttributes(XmlDocument doc, XmlNode xmlNode, AbsFlowNode node)
         {
             XmlAttribute idAttr = doc.CreateAttribute("id");
             idAttr.Value = node.GetId();

@@ -9,33 +9,32 @@ using System.Windows.Forms;
 namespace HttpTool.Core.Model
 {
 
-    public class SingleHttpFlow : IIncludeJsLibs
+    public class SingleHttpFlow : AbsFlowNode
     {
 
-        public SingleHttpFlow()
-        {
-            this.id = Guid.NewGuid().ToString();
-        }
-
         public SingleHttpFlow(string id)
+            : base(id)
         {
-            this.id = id;
+
         }
 
-        public string id;
+        public SingleHttpFlow() { }
 
-        public string GetId()
+        public AbsFlowNode HeadNode { get; set; }
+
+
+        public override void Exec(FlowContext ctx)
         {
-            return id;
+            try
+            {
+                HeadNode.Exec(ctx);
+            }
+            catch (Exception ex)
+            {
+                ctx.Logger.Error(string.Format("{0} 节点执行异常，异常信息:{1}", this.Name, ex.Message), ex);
+            }
+
         }
-
-        public string Name { get; set; }
-
-        public string Desc { get; set; }
-
-        public AbsNode HeadNode { get; set; }
-
-        public List<string> includeJSLibs;
 
         public FlowContext Run(ILogger logger)
         {
@@ -77,7 +76,7 @@ namespace HttpTool.Core.Model
 
         }
 
-        public void AppendNode(AbsNode node)
+        public void AppendNode(AbsFlowNode node)
         {
             if (HeadNode == null)
             {
@@ -85,16 +84,16 @@ namespace HttpTool.Core.Model
             }
             else
             {
-                AbsNode tempNode = HeadNode;
+                AbsFlowNode tempNode = HeadNode;
                 while (tempNode.NextNode != null) { tempNode = tempNode.NextNode; }
                 tempNode.NextNode = node;
             }
 
         }
 
-        public void RemoveNode(AbsNode node)
+        public void RemoveNode(AbsFlowNode node)
         {
-            AbsNode tempNode = HeadNode;
+            AbsFlowNode tempNode = HeadNode;
             while (tempNode.NextNode != null)
             {
                 if (tempNode.NextNode == node)
@@ -107,15 +106,5 @@ namespace HttpTool.Core.Model
             }
         }
 
-
-        public List<string> GetIncludeJSLibs()
-        {
-            return this.includeJSLibs;
-        }
-
-        public void SetIncludeJsLibs(List<string> jsLibs)
-        {
-            this.includeJSLibs = jsLibs;
-        }
     }
 }

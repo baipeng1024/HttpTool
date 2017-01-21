@@ -9,10 +9,10 @@ namespace HttpTool.Window.controls
 {
     public class DirTreeNodeC : TreeNode
     {
-        public DirTreeNodeC(string text) {
+        public DirTreeNodeC(string text,ContextMenuStrip ctxMenu) {
             this.Text = text;
-            ImageKey = ResourcesHelper.GetImgKey(Resource.folder_open);
-            
+            this.ContextMenuStrip = ctxMenu;
+            ImageKey = ResourcesHelper.GetImgKey(Resource.folder_open);            
         }
 
 

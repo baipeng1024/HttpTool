@@ -20,14 +20,16 @@ namespace HttpTool.Window.controls
 
         private Panel contentPnl;
 
-        public FlowTreeNodeC(SingleHttpFlow singleHttpFlow, FlowLayoutPanel parentPnl, Panel contentPnl)
+        public FlowTreeNodeC(SingleHttpFlow singleHttpFlow, FlowLayoutPanel parentPnl, Panel contentPnl, ContextMenuStrip ctxMenu)
         {
             HttpFlow = singleHttpFlow;
             Text = singleHttpFlow.Name;
-            AbsNode node = HttpFlow.HeadNode;
+            AbsFlowNode node = HttpFlow.HeadNode;
             this.parentPnl = parentPnl;
             this.contentPnl = contentPnl;
+            ContextMenuStrip = ctxMenu;
             List<BreviaryNodeC> breviaryNodes = new List<BreviaryNodeC>();
+            breviaryNodes.Add(new BreviaryNodeC(singleHttpFlow, this));
 
             while (node != null)
             {
@@ -38,7 +40,7 @@ namespace HttpTool.Window.controls
             BreviaryNodes = breviaryNodes.ToArray();
         }
 
-        public BreviaryNodeC AddNode(AbsNode node, BreviaryNodeC prev)
+        public BreviaryNodeC AddNode(AbsFlowNode node, BreviaryNodeC prev)
         {
             BreviaryNodeC[] nodes = new BreviaryNodeC[BreviaryNodes.Length + 1];
             int i = 0;

@@ -12,13 +12,10 @@ namespace HttpTool.Window.controls
 {
     public partial class JSNodeC : NodeC
     {
-        private JSNode jsNode;
-
         public JSNodeC(JSNode jsNode)
             : base(jsNode)
         {
             InitializeComponent();
-            this.jsNode = jsNode;
             Load();
             LockEdit();
         }
@@ -26,7 +23,7 @@ namespace HttpTool.Window.controls
         protected override void Load()
         {
             base.Load();
-            tacScript.SetText(jsNode.JS);
+            tacScript.SetText(((JSNode)flowNode).JS);
         }
 
         protected override void LockEdit()
@@ -43,8 +40,9 @@ namespace HttpTool.Window.controls
 
         protected override bool Save()
         {
-            if (base.Save()) {
-                jsNode.JS = tacScript.GetText();
+            if (base.Save())
+            {
+                ((JSNode)flowNode).JS = tacScript.GetText();
                 return true;
             }
             return false;

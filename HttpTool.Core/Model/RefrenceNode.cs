@@ -5,9 +5,9 @@ using System.Text;
 
 namespace HttpTool.Core.Model
 {
-    public class RefrenceNode : AbsNode
+    public class RefrenceNode : AbsFlowNode
     {
-        public AbsNode RealNode { get; set; }
+        public AbsFlowNode RealNode { get; set; }
 
         public override void Exec(FlowContext ctx)
         {

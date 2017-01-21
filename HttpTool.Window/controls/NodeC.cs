@@ -18,28 +18,28 @@ namespace HttpTool.Window.controls
 
         private const string SAVE_TEXT = "保存";
 
-        private AbsNode node;
+        protected AbsFlowNode flowNode;
 
         protected NodeC()
         {
             InitializeComponent();
         }
 
-        public NodeC(AbsNode node)
+        public NodeC(AbsFlowNode node)
         {
             InitializeComponent();
             btnEdit.Text = EDIT_TEXT;
-            this.node = node;
+            this.flowNode = node;
         }
 
         protected virtual void Load()
         {
-            txtName.SetText(node.Name);
-            tacDesc.SetText(node.Desc);
+            txtName.SetText(flowNode.Name);
+            tacDesc.SetText(flowNode.Desc);
             lbxResource.Items.AddRange(JSLibHelper.GetJSLibs().ToArray());
-            List<string> jsLibs = node.GetIncludeJSLibs();
+            List<string> jsLibs = flowNode.GetIncludeJSLibs();
             if (jsLibs != null)
-            {
+            { 
                 lbxIncludes.Items.AddRange(jsLibs.ToArray());
             }
         }
@@ -63,12 +63,12 @@ namespace HttpTool.Window.controls
 
         protected virtual bool Save()
         {
-            node.Name = txtName.GetText().Trim();
-            node.Desc = tacDesc.GetText();
-            node.includeJSLibs = new List<string>();
+            flowNode.Name = txtName.GetText().Trim();
+            flowNode.Desc = tacDesc.GetText();
+            flowNode.includeJSLibs = new List<string>();
             foreach (string item in lbxIncludes.Items)
             {
-                node.includeJSLibs.Add(item);
+                flowNode.includeJSLibs.Add(item);
             }
             return true;
         }
