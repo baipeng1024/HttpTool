@@ -68,6 +68,7 @@
     <Compile Include="AddFlowNode.Designer.cs">
       <DependentUpon>AddFlowNode.cs</DependentUpon>
     </Compile>
+    <Compile Include="controls\AbsTreeNode.cs" />
     <Compile Include="controls\BreviaryNodeC.cs">
       <SubType>UserControl</SubType>
     </Compile>

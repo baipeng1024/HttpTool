@@ -13,8 +13,20 @@ namespace HttpTool.Window.tool
 
     public class ResourcesHelper
     {
+        
+
         public static ImageList IMAGES = new ImageList();
-      
+
+        public const string IMG_EXPORT_KEY = "export";
+        public const string IMG_FLOW_KEY = "flow";
+        public const string IMG_FOLDER_CLOSE_KEY = "folder_close";
+        public const string IMG_FOLDER_OPEN_KEY = "folder_open";
+        public const string IMG_FULL_SCREEN_KEY = "full_screen";
+        public const string IMG_HTTP_KEY = "http";
+        public const string IMG_IMPORT_KEY = "import";
+        public const string IMG_JS_KEY = "js";
+        public const string IMG_SABER_KEY = "saber";
+         
 
         static ResourcesHelper()
         {
@@ -33,20 +45,6 @@ namespace HttpTool.Window.tool
             }
 
         }
-
-
-        public static string GetImgKey(Bitmap img)
-        {
-            foreach (string key in IMAGES.Images.Keys)
-            {
-                if (IMAGES.Images[key] == img)
-                {
-                    return key;
-                }
-            }
-            return null;
-        }
-
 
     }
 }

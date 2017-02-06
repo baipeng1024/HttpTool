@@ -72,13 +72,15 @@
             // tvwFlows
             // 
             this.tvwFlows.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvwFlows.LabelEdit = true;
             this.tvwFlows.Location = new System.Drawing.Point(0, 0);
             this.tvwFlows.Name = "tvwFlows";
             this.tvwFlows.Size = new System.Drawing.Size(217, 700);
             this.tvwFlows.TabIndex = 0;
-            this.tvwFlows.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvwFlows_BeforeCollapse);
-            this.tvwFlows.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvwFlows_BeforeExpand);
+            this.tvwFlows.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvwFlows_AfterCollapse);
+            this.tvwFlows.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvwFlows_AfterExpand);
             this.tvwFlows.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwFlows_AfterSelect);
+            this.tvwFlows.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tvwFlows_KeyDown);
             this.tvwFlows.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tvwFlows_MouseDown);
             // 
             // spcRight
@@ -139,24 +141,28 @@
             this.创建目录ToolStripMenuItem.Name = "创建目录ToolStripMenuItem";
             this.创建目录ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.创建目录ToolStripMenuItem.Text = "创建目录";
+            this.创建目录ToolStripMenuItem.Click += new System.EventHandler(this.OnCreateDirMenuItem_Click);
             // 
             // 创建流程ToolStripMenuItem
             // 
             this.创建流程ToolStripMenuItem.Name = "创建流程ToolStripMenuItem";
             this.创建流程ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.创建流程ToolStripMenuItem.Text = "创建流程";
+            this.创建流程ToolStripMenuItem.Click += new System.EventHandler(this.OnCreateFlowMenuItem_Click);
             // 
             // 创建流程节点ToolStripMenuItem
             // 
             this.创建流程节点ToolStripMenuItem.Name = "创建流程节点ToolStripMenuItem";
             this.创建流程节点ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.创建流程节点ToolStripMenuItem.Text = "创建流程节点";
+            this.创建流程节点ToolStripMenuItem.Click += new System.EventHandler(this.OnCreateFlowNodeMenuItem_Click);
             // 
             // 移除ToolStripMenuItem
             // 
             this.移除ToolStripMenuItem.Name = "移除ToolStripMenuItem";
             this.移除ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.移除ToolStripMenuItem.Text = "移除";
+            this.移除ToolStripMenuItem.Click += new System.EventHandler(this.OnRemoveMenuItem_Click);
             // 
             // Main
             // 

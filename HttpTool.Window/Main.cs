@@ -16,13 +16,10 @@ namespace HttpTool.Window
     public partial class Main : Form
     {
 
-
         public Main()
         {
             InitializeComponent();
             ctxMenu.Hide();
-            tvwFlows.Nodes.Add(new DirTreeNodeC("flows", ctxMenu));
-            tvwFlows.ImageList = ResourcesHelper.IMAGES;
         }
 
 
@@ -30,6 +27,9 @@ namespace HttpTool.Window
         {
             try
             {
+                tvwFlows.ImageList = ResourcesHelper.IMAGES;
+                tvwFlows.Nodes.Add(new DirTreeNodeC("flows", ctxMenu));
+                // tvwFlows.Nodes[0].ImageKey = ResourcesHelper.GetImgKey(Resource.http);
                 GlobalObj.FLOWS.Load("flows.xml");
             }
             catch (Exception ex)
@@ -102,28 +102,7 @@ namespace HttpTool.Window
             }
         }
 
-        private void tvwFlows_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
-        {
-            if (e.Node is DirTreeNodeC)
-            {
-                ((DirTreeNodeC)e.Node).OnCollapse();
 
-            }
-        }
-
-        private void tvwFlows_BeforeExpand(object sender, TreeViewCancelEventArgs e)
-        {
-            if (e.Node is DirTreeNodeC)
-            {
-                ((DirTreeNodeC)e.Node).OnExpand();
-
-            }
-        }
-
-        private void tvwFlows_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-
-        }
 
         private void tvwFlows_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -146,7 +125,15 @@ namespace HttpTool.Window
                         ctxMenu.Items[0].Visible = true;
                         ctxMenu.Items[1].Visible = true;
                         ctxMenu.Items[2].Visible = true;
-                        ctxMenu.Items[3].Visible = true;
+                        if (currentNode.Parent == null)
+                        {
+                            ctxMenu.Items[3].Visible = false;
+                        }
+                        else
+                        {
+                            ctxMenu.Items[3].Visible = true;
+                        }
+
                     }
                     else if (currentNode is FlowTreeNodeC)
                     {
@@ -159,6 +146,70 @@ namespace HttpTool.Window
             }
 
         }
+
+
+        private void tvwFlows_KeyDown(object sender, KeyEventArgs e)
+        {
+            TreeNode node = tvwFlows.SelectedNode;
+            if (node != null && node.Parent != null && e.KeyData == Keys.F2)
+            {
+                node.BeginEdit();
+            }
+
+        }
+
+
+        private void OnCreateDirMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode node = tvwFlows.SelectedNode;
+            if (node is DirTreeNodeC)
+            {
+                node.Nodes.Add(new DirTreeNodeC("未命名", ctxMenu));
+            }
+        }
+
+        private void OnCreateFlowMenuItem_Click(object sender, EventArgs e)
+        {
+            AbsTreeNode node = (AbsTreeNode)tvwFlows.SelectedNode;
+            SingleHttpFlow flowNode = new SingleHttpFlow();
+            string t = node.GetPath();
+            GlobalObj.FLOWS.HttpFlows.Add(new KeyValuePair<string, SingleHttpFlow>(node.GetPath(), flowNode));
+            flowNode.Name = "未命名";
+            node.Nodes.Add(new FlowTreeNodeC(flowNode, flpnl, spcRight.Panel2, ctxMenu));
+        }
+
+        private void OnCreateFlowNodeMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OnRemoveMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode node = tvwFlows.SelectedNode;
+            if (node is DirTreeNodeC)
+            {
+                if (node.Nodes.Count == 0)
+                {
+                    node.Remove();
+                }
+            }
+        }
+
+        private void tvwFlows_AfterCollapse(object sender, TreeViewEventArgs e)
+        {
+            DirTreeNodeC dirNode = (DirTreeNodeC)e.Node;
+            dirNode.ImageKey = ResourcesHelper.IMG_FOLDER_CLOSE_KEY;
+            dirNode.SelectedImageKey = dirNode.ImageKey;
+        }
+
+        private void tvwFlows_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+            DirTreeNodeC dirNode = (DirTreeNodeC)e.Node;
+            dirNode.ImageKey = ResourcesHelper.IMG_FOLDER_OPEN_KEY;
+            dirNode.SelectedImageKey = dirNode.ImageKey;
+        }
+
+
 
 
     }

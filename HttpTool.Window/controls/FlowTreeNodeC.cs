@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace HttpTool.Window.controls
 {
-    public class FlowTreeNodeC : TreeNode
+    public class FlowTreeNodeC : AbsTreeNode
     {
         public SingleHttpFlow HttpFlow { get; set; }
 
@@ -28,6 +28,8 @@ namespace HttpTool.Window.controls
             this.parentPnl = parentPnl;
             this.contentPnl = contentPnl;
             ContextMenuStrip = ctxMenu;
+            ImageKey = ResourcesHelper.IMG_FLOW_KEY;
+            SelectedImageKey = ResourcesHelper.IMG_FLOW_KEY;      
             List<BreviaryNodeC> breviaryNodes = new List<BreviaryNodeC>();
             breviaryNodes.Add(new BreviaryNodeC(singleHttpFlow, this));
 
@@ -93,6 +95,11 @@ namespace HttpTool.Window.controls
             currentNode = node;
             contentPnl.Controls.Clear();
             contentPnl.Controls.Add(currentNode.ContentNodeC);
+        }
+
+        public override string GetPath()
+        {
+            return GetParentPath();
         }
     }
 }
