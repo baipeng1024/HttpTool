@@ -72,6 +72,8 @@
             // tvwFlows
             // 
             this.tvwFlows.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvwFlows.Indent = 19;
+            this.tvwFlows.ItemHeight = 20;
             this.tvwFlows.LabelEdit = true;
             this.tvwFlows.Location = new System.Drawing.Point(0, 0);
             this.tvwFlows.Name = "tvwFlows";
@@ -171,6 +173,7 @@
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.spcMain);
             this.Controls.Add(this.menus);
+            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MainMenuStrip = this.menus;
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.MinimumSize = new System.Drawing.Size(1024, 768);

@@ -18,28 +18,16 @@ namespace HttpTool.Core.Model
      * */
     public class FlowContext
     {
-        private class Navigation
-        {
-            public Navigation(FlowContext ctx,string url, byte[] parsData)
-            {
-                this.Ctx = ctx;
-                this.Uri = new Uri(url);
-                this.ParsData = parsData;
-            }
-
-           public FlowContext Ctx { get; set; }
-
-           public Uri Uri { get; set; }
-
-           public byte[] ParsData { get; set; }
-        }
+        
 
 
         public static readonly string INIT_JS_CTX_FUN_NAME = "httpToolInitJsCtx_" + System.Guid.NewGuid().ToString().Replace("-", "");
 
         public static readonly string GET_JS_CTX_FUN_NAME = "httpToolGetJsCtx" + System.Guid.NewGuid().ToString().Replace("-", "");
 
-        private static readonly string CTX_INIT = "\n var SYS_CTX;function " + INIT_JS_CTX_FUN_NAME + "(ctx){  SYS_CTX = ctx;};function " + GET_JS_CTX_FUN_NAME + "(){return SYS_CTX;};";
+        public static readonly string CTX_NAME = "SYS_CTX";
+
+        private static readonly string CTX_INIT = "\n var " + CTX_NAME + ";function " + INIT_JS_CTX_FUN_NAME + "(ctx){  " + CTX_NAME + " = ctx;};function " + GET_JS_CTX_FUN_NAME + "(){return " + CTX_NAME + ";};";
 
         private WebBrowser wb;
 
@@ -60,7 +48,7 @@ namespace HttpTool.Core.Model
                 this.IncludeJSContent = JSLibHelper.GetJSLibContent(IncludeJSLib);
             }
 
-            Tool.SetWebBrowserDocumentText(wb, "<!DOCTYPE html><html><head> <title></title></head><body><script type=\"text/javascript\">var SYS_CTX = {};function getJsCtx(){return SYS_CTX;};</script></body></html>");
+            Tool.SetWebBrowserDocumentText(wb, "<!DOCTYPE html><html><head> <title></title></head><body><script type=\"text/javascript\">var " + CTX_NAME + " = {};function getJsCtx(){return " + CTX_NAME + ";};</script></body></html>");
             this.JsCtx = this.wb.Document.InvokeScript("getJsCtx");
         }
         public WebBrowser GetWebBrowser()

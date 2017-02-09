@@ -29,7 +29,6 @@ namespace HttpTool.Window
             {
                 tvwFlows.ImageList = ResourcesHelper.IMAGES;
                 tvwFlows.Nodes.Add(new DirTreeNodeC("flows", ctxMenu));
-                // tvwFlows.Nodes[0].ImageKey = ResourcesHelper.GetImgKey(Resource.http);
                 GlobalObj.FLOWS.Load("flows.xml");
             }
             catch (Exception ex)
@@ -41,6 +40,12 @@ namespace HttpTool.Window
             foreach (KeyValuePair<string, SingleHttpFlow> item in GlobalObj.FLOWS.HttpFlows)
             {
                 FindAndTryBuild(item.Key).Nodes.Add(new FlowTreeNodeC(item.Value, flpnl, spcRight.Panel2, ctxMenu));
+            }
+
+            foreach (KeyValuePair<string, AbsFlowNode> item in GlobalObj.FLOWS.IndependentNodes)
+            {
+                FindAndTryBuild(item.Key).Nodes.Add(new IndependentTreeNodeC(item.Value, flpnl, spcRight.Panel2, ctxMenu));
+
             }
 
 
@@ -61,14 +66,18 @@ namespace HttpTool.Window
                 return tvwFlows.TopNode;
             }
 
-            TreeNode node = tvwFlows.TopNode;
+            TreeNode node = tvwFlows.TopNode.FirstNode;
             IEnumerator nameIter = nameArr.GetEnumerator();
             nameIter.MoveNext();
             string name = (string)nameIter.Current;
 
             while (true)
             {
-                if (node.Text == name)
+                if (node == null)
+                {
+                    tvwFlows.TopNode.Nodes.Add((node = new DirTreeNodeC(name, ctxMenu)));
+                }
+                else if (node.Text == name)
                 {
                     if (nameIter.MoveNext())
                     {
@@ -86,14 +95,7 @@ namespace HttpTool.Window
                 }
                 else if (node.NextNode == null)
                 {
-                    if (node.Parent == null)
-                    {
-                        node.Nodes.Add((node = new DirTreeNodeC(name, ctxMenu)));
-                    }
-                    else
-                    {
-                        node.Parent.Nodes.Add((node = new DirTreeNodeC(name, ctxMenu)));
-                    }
+                    node.Parent.Nodes.Add((node = new DirTreeNodeC(name, ctxMenu)));
                 }
                 else
                 {

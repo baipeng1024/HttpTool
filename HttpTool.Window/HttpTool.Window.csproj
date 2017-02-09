@@ -90,6 +90,7 @@
     <Compile Include="controls\HttpNodeC.Designer.cs">
       <DependentUpon>HttpNodeC.cs</DependentUpon>
     </Compile>
+    <Compile Include="controls\IndependentTreeNodeC.cs" />
     <Compile Include="controls\JSNodeC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -212,6 +213,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HTMLPage1.html" />
+    <None Include="resources\脚本.png" />
+    <None Include="resources\web.png" />
+    <None Include="resources\js %283%29.png" />
+    <None Include="resources\http %283%29.png" />
+    <None Include="resources\http.png" />
+    <None Include="resources\js.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

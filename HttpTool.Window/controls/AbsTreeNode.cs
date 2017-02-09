@@ -18,7 +18,6 @@ namespace HttpTool.Window.controls
                 path.Insert(0, node.Text + "\\");
                 node = node.Parent;
             }
-
             return path.ToString();
         }
 

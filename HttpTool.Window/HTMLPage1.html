@@ -10,10 +10,29 @@
 
         ctx.index = 0;
         ctx.getIndex = function () {
-            return ctx.index;
+           
+            return 1;
         }
-        ctx.index++;
-        alert(ctx.getIndex);
+      
+        var v1 = ctx.getIndex();
+        
+        var v2 = function () {
+
+            return 2;
+        }();
+        
+        function c() {
+            return b();
+        }
+
+        function b() {
+            return a();
+        }
+
+
+        function a() {
+            return "222";
+        }
 
     </script>
 </body>

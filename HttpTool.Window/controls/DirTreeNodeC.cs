@@ -14,8 +14,8 @@ namespace HttpTool.Window.controls
         public DirTreeNodeC(string text,ContextMenuStrip ctxMenu) {
             this.Text = text;
             this.ContextMenuStrip = ctxMenu;
-              
-            
+            ImageKey = ResourcesHelper.IMG_FOLDER_CLOSE_KEY;
+            SelectedImageKey = ImageKey;            
         }
 
 

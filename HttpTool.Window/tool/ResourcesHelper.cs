@@ -26,6 +26,8 @@ namespace HttpTool.Window.tool
         public const string IMG_IMPORT_KEY = "import";
         public const string IMG_JS_KEY = "js";
         public const string IMG_SABER_KEY = "saber";
+        public const string IMG_JS_TREE_NODE_KEY = "js_tree_node";
+        public const string IMG_HTTP_TREE_NODE_KEY = "http_tree_node";
          
 
         static ResourcesHelper()
