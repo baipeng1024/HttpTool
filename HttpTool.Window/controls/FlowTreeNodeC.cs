@@ -12,47 +12,64 @@ namespace HttpTool.Window.controls
     {
         public SingleHttpFlow HttpFlow { get; set; }
 
-        public BreviaryNodeC[] BreviaryNodes { get; set; }
+        public FlowBreviaryNodeC[] BreviaryNodes { get; set; }
 
-        private BreviaryNodeC currentNode;
-
-        private FlowLayoutPanel parentPnl;
-
-        private Panel contentPnl;
+        private FlowBreviaryNodeC currentNode;
 
         public FlowTreeNodeC(SingleHttpFlow singleHttpFlow, FlowLayoutPanel parentPnl, Panel contentPnl, ContextMenuStrip ctxMenu)
+            : base(parentPnl, contentPnl, ctxMenu)
         {
             HttpFlow = singleHttpFlow;
             Text = singleHttpFlow.Name;
             AbsFlowNode node = HttpFlow.HeadNode;
-            this.parentPnl = parentPnl;
-            this.contentPnl = contentPnl;
-            ContextMenuStrip = ctxMenu;
+           
             ImageKey = ResourcesHelper.IMG_FLOW_KEY;
-            SelectedImageKey = ResourcesHelper.IMG_FLOW_KEY;      
-            List<BreviaryNodeC> breviaryNodes = new List<BreviaryNodeC>();
-            breviaryNodes.Add(new BreviaryNodeC(singleHttpFlow, this));
+            SelectedImageKey = ImageKey;      
+            List<FlowBreviaryNodeC> breviaryNodes = new List<FlowBreviaryNodeC>();
+            breviaryNodes.Add(new FlowBreviaryNodeC(singleHttpFlow, this));
 
             while (node != null)
             {
-                breviaryNodes.Add(new BreviaryNodeC(node, this));
+                breviaryNodes.Add(new FlowBreviaryNodeC(node, this));
                 node = node.NextNode;
             }
 
             BreviaryNodes = breviaryNodes.ToArray();
         }
 
-        public BreviaryNodeC AddNode(AbsFlowNode node, BreviaryNodeC prev)
+        public override void OnAfterSelect()
         {
-            BreviaryNodeC[] nodes = new BreviaryNodeC[BreviaryNodes.Length + 1];
+            base.OnAfterSelect();
+            parentPnl.Controls.Clear();
+            parentPnl.Controls.AddRange(BreviaryNodes);
+
+            BreviaryNodes[0].Selected();        
+
+        }
+
+        public override void OnMouseDown(MouseButtons mouseButton)
+        {
+            base.OnMouseDown(mouseButton);
+            if (mouseButton == MouseButtons.Right)
+            {
+                ContextMenuStrip.Items[0].Visible = false;
+                ContextMenuStrip.Items[1].Visible = false;
+                ContextMenuStrip.Items[2].Visible = false;
+                ContextMenuStrip.Items[3].Visible = true;
+            }
+        }
+
+        public FlowBreviaryNodeC AddNode(AbsFlowNode node, FlowBreviaryNodeC prev)
+        {
+            FlowBreviaryNodeC[] nodes = new FlowBreviaryNodeC[BreviaryNodes.Length + 1];
             int i = 0;
-            BreviaryNodeC newNode = null;
-            foreach (BreviaryNodeC item in BreviaryNodes)
+            FlowBreviaryNodeC newNode = null;
+            foreach (FlowBreviaryNodeC item in BreviaryNodes)
             {
                 nodes[i++] = item;
                 if (prev == item)
                 {
-                    newNode = new BreviaryNodeC(node, this);
+                    newNode = new FlowBreviaryNodeC(node, this);
                     parentPnl.Controls.Add(newNode);
                     parentPnl.Controls.SetChildIndex(newNode, i);
                     nodes[i++] = newNode;
@@ -62,11 +79,11 @@ namespace HttpTool.Window.controls
             return newNode;
         }
 
-        public void RemoveNode(BreviaryNodeC breviaryNode)
+        public void RemoveNode(FlowBreviaryNodeC breviaryNode)
         {
-            BreviaryNodeC[] nodes = new BreviaryNodeC[BreviaryNodes.Length - 1];
+            FlowBreviaryNodeC[] nodes = new FlowBreviaryNodeC[BreviaryNodes.Length - 1];
             int i = 0;
-            foreach (BreviaryNodeC item in BreviaryNodes)
+            foreach (FlowBreviaryNodeC item in BreviaryNodes)
             {
                 if (breviaryNode == item)
                 {
@@ -79,12 +96,12 @@ namespace HttpTool.Window.controls
 
             }
             BreviaryNodes = nodes;
-            HttpFlow.RemoveNode(breviaryNode.Node);
+            HttpFlow.RemoveNode(breviaryNode.FlowNode);
             parentPnl.Controls.Remove(breviaryNode);
         }
 
 
-        public void SelectNotice(BreviaryNodeC node)
+        public void SelectNotice(FlowBreviaryNodeC node)
         {
 
             if (currentNode != null && currentNode != node)
@@ -96,6 +113,8 @@ namespace HttpTool.Window.controls
             contentPnl.Controls.Clear();
             contentPnl.Controls.Add(currentNode.ContentNodeC);
         }
+
+        
 
         public override string GetPath()
         {

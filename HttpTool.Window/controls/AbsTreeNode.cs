@@ -8,6 +8,23 @@ namespace HttpTool.Window.controls
 {
     public abstract class AbsTreeNode : TreeNode
     {
+        protected FlowLayoutPanel parentPnl;
+
+        protected Panel contentPnl;
+
+        public AbsTreeNode(FlowLayoutPanel parentPnl, Panel contentPnl, ContextMenuStrip ctxMenu)
+        {
+            this.parentPnl = parentPnl;
+            this.contentPnl = contentPnl;
+            ContextMenuStrip = ctxMenu;
+        
+        }
+
+        public virtual void OnAfterSelect() { }
+
+        public virtual void OnMouseDown(MouseButtons mouseButton) { }
+
+
         public string GetParentPath()
         {
             TreeNode node = this.Parent;
@@ -20,6 +37,7 @@ namespace HttpTool.Window.controls
             }
             return path.ToString();
         }
+                
 
         public virtual string GetPath()
         {

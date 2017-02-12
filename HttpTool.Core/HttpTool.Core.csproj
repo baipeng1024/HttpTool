@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HttpTool.Core</RootNamespace>
     <AssemblyName>HttpTool.Core</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -47,6 +47,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="JS\JSLibHelper.cs" />
+    <Compile Include="JS\JSProcessor.cs" />
     <Compile Include="Model\BindHostHttpNode.cs" />
     <Compile Include="Model\EFlowNodeType.cs" />
     <Compile Include="Model\FlowContext.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Model\HttpNode.cs" />
     <Compile Include="Model\AbsFlowNode.cs" />
     <Compile Include="Model\IIncludeJsLibs.cs" />
+    <Compile Include="Model\JSMethodMeta.cs" />
     <Compile Include="Model\JSNode.cs" />
     <Compile Include="Model\RefrenceNode.cs" />
     <Compile Include="Model\SingleHttpFlow.cs" />

@@ -12,6 +12,10 @@ namespace HttpTool.Window.controls
 {
     public partial class FlowNodeC : NodeC
     {
+        public FlowNodeC() {
+            InitializeComponent();
+        }
+
         public FlowNodeC(AbsFlowNode node)
             : base(node)
         {

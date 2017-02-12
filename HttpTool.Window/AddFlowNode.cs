@@ -15,9 +15,9 @@ namespace HttpTool.Window
     public partial class AddFlowNode : Form
     {
 
-        private BreviaryNodeC breviaryNode;
+        private FlowBreviaryNodeC breviaryNode;
 
-        public AddFlowNode(BreviaryNodeC breviaryNode)
+        public AddFlowNode(FlowBreviaryNodeC breviaryNode)
         {
             InitializeComponent();
             this.breviaryNode = breviaryNode;
@@ -48,15 +48,15 @@ namespace HttpTool.Window
             {
                 JSNode jsNode = new JSNode();
                 jsNode.Name = tcName.GetText();
-                jsNode.NextNode = breviaryNode.Node.NextNode;
-                breviaryNode.Node.NextNode = jsNode;
+                jsNode.NextNode = breviaryNode.FlowNode.NextNode;
+                breviaryNode.FlowNode.NextNode = jsNode;
             }
             else if (type == EFlowNodeType.HTTP.ToString())
             {
                 HttpNode httpNode = new HttpNode();
                 httpNode.Name = tcName.GetText();
-                httpNode.NextNode = breviaryNode.Node.NextNode;
-                breviaryNode.Node.NextNode = httpNode;
+                httpNode.NextNode = breviaryNode.FlowNode.NextNode;
+                breviaryNode.FlowNode.NextNode = httpNode;
 
             }
             else if (type == EFlowNodeType.REFRENCE.ToString())
@@ -68,11 +68,11 @@ namespace HttpTool.Window
                 }
 
                 ComboBoxItem<string, AbsFlowNode> item = (ComboBoxItem<string, AbsFlowNode>)cbxNodeType.SelectedItem;
-                item.val.NextNode = breviaryNode.Node.NextNode;
-                breviaryNode.Node.NextNode = item.val;
+                item.val.NextNode = breviaryNode.FlowNode.NextNode;
+                breviaryNode.FlowNode.NextNode = item.val;
             }
 
-            breviaryNode.AddFlowNodeCallback(breviaryNode.Node.NextNode);
+            breviaryNode.AddFlowNodeCallback(breviaryNode.FlowNode.NextNode);
             this.Close();
         }
 

@@ -12,6 +12,9 @@ namespace HttpTool.Window.controls
 {
     public partial class HttpNodeC : NodeC
     {
+        public HttpNodeC() {
+            InitializeComponent();
+        }
 
         public HttpNodeC(HttpNode node)
             : base(node)

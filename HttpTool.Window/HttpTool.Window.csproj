@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HttpTool.Window</RootNamespace>
     <AssemblyName>HttpTool.Window</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <PublishUrl>发布\</PublishUrl>
@@ -69,14 +69,14 @@
       <DependentUpon>AddFlowNode.cs</DependentUpon>
     </Compile>
     <Compile Include="controls\AbsTreeNode.cs" />
-    <Compile Include="controls\BreviaryNodeC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="controls\BreviaryNodeC.Designer.cs">
-      <DependentUpon>BreviaryNodeC.cs</DependentUpon>
-    </Compile>
     <Compile Include="controls\ComboBoxItem.cs" />
     <Compile Include="controls\DirTreeNodeC.cs" />
+    <Compile Include="controls\FlowBreviaryNodeC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\FlowBreviaryNodeC.Designer.cs">
+      <DependentUpon>FlowBreviaryNodeC.cs</DependentUpon>
+    </Compile>
     <Compile Include="controls\FlowNodeC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +89,12 @@
     </Compile>
     <Compile Include="controls\HttpNodeC.Designer.cs">
       <DependentUpon>HttpNodeC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\BreviaryNodeC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\BreviaryNodeC.Designer.cs">
+      <DependentUpon>BreviaryNodeC.cs</DependentUpon>
     </Compile>
     <Compile Include="controls\IndependentTreeNodeC.cs" />
     <Compile Include="controls\JSNodeC.cs">
@@ -142,14 +148,17 @@
     <EmbeddedResource Include="AddFlowNode.resx">
       <DependentUpon>AddFlowNode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\BreviaryNodeC.resx">
-      <DependentUpon>BreviaryNodeC.cs</DependentUpon>
+    <EmbeddedResource Include="controls\FlowBreviaryNodeC.resx">
+      <DependentUpon>FlowBreviaryNodeC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controls\FlowNodeC.resx">
       <DependentUpon>FlowNodeC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controls\HttpNodeC.resx">
       <DependentUpon>HttpNodeC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\BreviaryNodeC.resx">
+      <DependentUpon>BreviaryNodeC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controls\JSNodeC.resx">
       <DependentUpon>JSNodeC.cs</DependentUpon>
