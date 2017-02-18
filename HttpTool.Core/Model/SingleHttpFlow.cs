@@ -27,16 +27,18 @@ namespace HttpTool.Core.Model
         {
             try
             {
+                ctx.Logger.Infor("开始执行。。。");
                 HeadNode.Exec(ctx);
             }
             catch (Exception ex)
             {
                 ctx.Logger.Error(string.Format("{0} 节点执行异常，异常信息:{1}", this.Name, ex.Message), ex);
             }
+            ctx.Logger.Infor("执行结束。。。");
 
         }
 
-        public FlowContext Run(ILogger logger)
+        public FlowContext Run(WebBrowser wb, ILogger logger)
         {
 
             if (logger == null)
@@ -44,36 +46,21 @@ namespace HttpTool.Core.Model
                 logger = new DefaultLogger();
             }
 
-            if (HeadNode == null)
+            FlowContext ctx = new FlowContext();
+            ctx.Logger = logger;
+            ctx.Init(wb, includeJSLibs);
+
+            try
             {
-                logger.Error("没有任何可执行节点");
-                return null;
+                Exec(ctx);
+            }
+            catch (Exception ex)
+            {
+                ctx.Logger.Error(string.Format("流程执行异常，异常信息:{0}", ex.Message), ex);
             }
 
-            FlowContext ctx = new FlowContext();
-            Thread t = new Thread(() =>
-            {
-
-                try
-                {
-                    ctx.Init(new WebBrowser(), includeJSLibs);
-                    ctx.Logger = logger;
-                    ctx.Logger.Infor("开始执行。。。");
-                    HeadNode.Exec(ctx);
-                }
-                catch (Exception ex)
-                {
-                    ctx.Logger.Error(string.Format("{0} 节点执行异常，异常信息:{1}", HeadNode.Name, ex.Message), ex);
-                }
-
-                ctx.Logger.Infor("执行结束。。。");
-
-            });
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
 
             return ctx;
-
         }
 
         public void AppendNode(AbsFlowNode node)

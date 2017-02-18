@@ -40,6 +40,7 @@
             this.创建流程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.创建流程节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.移除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.运行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
             this.spcMain.Panel2.SuspendLayout();
@@ -134,46 +135,54 @@
             // ctxMenu
             // 
             this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.运行ToolStripMenuItem,
             this.创建目录ToolStripMenuItem,
             this.创建流程ToolStripMenuItem,
             this.创建流程节点ToolStripMenuItem,
             this.移除ToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(149, 92);
+            this.ctxMenu.Size = new System.Drawing.Size(153, 136);
             // 
             // 创建目录ToolStripMenuItem
             // 
             this.创建目录ToolStripMenuItem.Name = "创建目录ToolStripMenuItem";
-            this.创建目录ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.创建目录ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.创建目录ToolStripMenuItem.Text = "创建目录";
             this.创建目录ToolStripMenuItem.Click += new System.EventHandler(this.OnCreateDirMenuItem_Click);
             // 
             // 创建流程ToolStripMenuItem
             // 
             this.创建流程ToolStripMenuItem.Name = "创建流程ToolStripMenuItem";
-            this.创建流程ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.创建流程ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.创建流程ToolStripMenuItem.Text = "创建流程";
             this.创建流程ToolStripMenuItem.Click += new System.EventHandler(this.OnCreateFlowMenuItem_Click);
             // 
             // 创建流程节点ToolStripMenuItem
             // 
             this.创建流程节点ToolStripMenuItem.Name = "创建流程节点ToolStripMenuItem";
-            this.创建流程节点ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.创建流程节点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.创建流程节点ToolStripMenuItem.Text = "创建流程节点";
             this.创建流程节点ToolStripMenuItem.Click += new System.EventHandler(this.OnCreateFlowNodeMenuItem_Click);
             // 
             // 移除ToolStripMenuItem
             // 
             this.移除ToolStripMenuItem.Name = "移除ToolStripMenuItem";
-            this.移除ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.移除ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.移除ToolStripMenuItem.Text = "移除";
             this.移除ToolStripMenuItem.Click += new System.EventHandler(this.OnRemoveMenuItem_Click);
+            // 
+            // 运行ToolStripMenuItem
+            // 
+            this.运行ToolStripMenuItem.Name = "运行ToolStripMenuItem";
+            this.运行ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.运行ToolStripMenuItem.Text = "运行";
+            this.运行ToolStripMenuItem.Click += new System.EventHandler(this.OnRunMenuItem_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.spcMain);
             this.Controls.Add(this.menus);
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -211,5 +220,6 @@
         private System.Windows.Forms.ToolStripMenuItem 创建流程ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 创建流程节点ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 移除ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 运行ToolStripMenuItem;
     }
 }

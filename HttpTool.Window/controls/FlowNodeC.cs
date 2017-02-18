@@ -28,7 +28,7 @@ namespace HttpTool.Window.controls
         protected override void Load()
         {
             base.Load();
-            tacRemark.SetText("流程工具");
+            tacRemark.SetText("全局上下文对象:SYS_CTX,每个节点之间的数据传递和共享可以通过此对象来实现");
 
         }
     }

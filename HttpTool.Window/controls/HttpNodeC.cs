@@ -12,7 +12,18 @@ namespace HttpTool.Window.controls
 {
     public partial class HttpNodeC : NodeC
     {
-        public HttpNodeC() {
+
+        private const string DEFATUL_INIT_REQUEST_JS = "//初始化请求对象\r\nvar request = {\r\n" + //
+           "    url: \"www.baidu.com\",\r\n" + //
+           "    type:\"post\",\r\n" + //
+           "    headers:\"host\":\"\"" + //
+           "    postPars:\"a=1&b=2\"\r\n" + //
+       "};";
+
+        private const string DEFAULT_ON_LAOD_JS = "//页面加载完成后要执行的脚本内容";
+
+        public HttpNodeC()
+        {
             InitializeComponent();
         }
 
@@ -28,35 +39,22 @@ namespace HttpTool.Window.controls
         {
             base.Load();
             HttpNode node = (HttpNode)flowNode;
-            if (node.RequestType != null && node.RequestType.ToLower() == "post")
-            {
-                cbxRequestType.SelectedItem = "post";
-            }
-            else
-            {
-                cbxRequestType.SelectedItem = "get";
-            }
-
-            tcRequestUrl.SetText(node.FunctionNameOfRequestUrl);
-            tcPostPars.SetText(node.FunctionNameOfPostParsStr);
+            tacInitRequest.SetText(string.IsNullOrEmpty(node.InitRequestJs) ? DEFATUL_INIT_REQUEST_JS : node.InitRequestJs);
+            tacOnLoad.SetText(string.IsNullOrEmpty(node.OnLoadJs) ? DEFAULT_ON_LAOD_JS : node.OnLoadJs);
         }
 
         protected override void LockEdit()
         {
             base.LockEdit();
-            cbxRequestType.Enabled = false;
-            tcPostPars.Enabled = false;
-            tcRequestUrl.Enabled = false;
-            tacScript.Enabled = false;
+            tacInitRequest.Enabled = false;
+            tacOnLoad.Enabled = false;
         }
 
         protected override void EnableEdit()
         {
             base.EnableEdit();
-            cbxRequestType.Enabled = true;
-            tcPostPars.Enabled = true;
-            tcRequestUrl.Enabled = true;
-            tacScript.Enabled = true;
+            tacInitRequest.Enabled = true;
+            tacOnLoad.Enabled = true;
         }
 
         protected override bool Save()
@@ -64,10 +62,8 @@ namespace HttpTool.Window.controls
             if (base.Save())
             {
                 HttpNode node = (HttpNode)flowNode;
-                node.RequestType = (string)cbxRequestType.SelectedItem;
-                node.FunctionNameOfRequestUrl = tcRequestUrl.GetText();
-                node.FunctionNameOfPostParsStr = tcPostPars.GetText();
-                node.Js = tacScript.GetText();
+                node.InitRequestJs = tacInitRequest.GetText();
+                node.OnLoadJs = tacOnLoad.GetText();
                 return true;
             }
             return false;

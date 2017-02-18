@@ -191,7 +191,7 @@ namespace HttpTool.Core.Model
             foreach (XmlNode childNode in xmlNode.ChildNodes)
             {
                 string tag = childNode.Name.ToLower();
-                if (tag == "jsLibs")
+                if (tag == "jslibs")
                 {
                     LoadJsLibs(singleHttpFlow, childNode.ChildNodes);
                 }
@@ -248,7 +248,7 @@ namespace HttpTool.Core.Model
             foreach (XmlNode childNode in xmlNode.ChildNodes)
             {
                 string childTag = childNode.Name.Trim().ToLower();
-                if (childTag == "jsLibs")
+                if (childTag == "jslibs")
                 {
                     LoadJsLibs(jsNode, childNode.ChildNodes);
                 }
@@ -274,33 +274,22 @@ namespace HttpTool.Core.Model
             {
                 httpNode.Desc = descAttr.Value;
             }
-            XmlAttribute requestTypeAttr = xmlNode.Attributes["requestType"];
-            if (requestTypeAttr != null)
-            {
-                httpNode.RequestType = requestTypeAttr.Value.Trim().ToLower();
-            }
-            XmlAttribute functionNameOfRequestUrlAttr = xmlNode.Attributes["functionNameOfRequestUrl"];
-            if (functionNameOfRequestUrlAttr != null)
-            {
-                httpNode.FunctionNameOfPostParsStr = functionNameOfRequestUrlAttr.Value.Trim();
-            }
-            XmlAttribute functionNameOfPostParsStrAttr = xmlNode.Attributes["functionNameOfPostParsStr"];
-            if (functionNameOfPostParsStrAttr != null)
-            {
-                httpNode.FunctionNameOfPostParsStr = functionNameOfPostParsStrAttr.Value.Trim();
-            }
 
             foreach (XmlNode childNode in xmlNode.ChildNodes)
             {
                 string childTag = childNode.Name.Trim().ToLower();
-                if (childTag == "jsLibs")
+                if (childTag == "jslibs")
                 {
                     LoadJsLibs(httpNode, childNode.ChildNodes);
                 }
-                else if (childTag == "js")
+                else if (childTag == "initrequestjs")
                 {
-                    httpNode.Js = childNode.InnerText;
-                }                
+                    httpNode.InitRequestJs = childNode.InnerText;
+                }
+                else if (childTag == "onloadjs")
+                {
+                    httpNode.OnLoadJs = childNode.InnerText;
+                }
             }
 
             return httpNode;
@@ -318,6 +307,9 @@ namespace HttpTool.Core.Model
                 node.AppendChild(ConvertToXmlNode(doc, jsNode.includeJSLibs));
             }
 
+            XmlNode js = doc.CreateNode(XmlNodeType.Element, "js", null);
+            js.InnerText = jsNode.Js;
+            node.AppendChild(js);
             return node;
         }
 
@@ -326,33 +318,24 @@ namespace HttpTool.Core.Model
             XmlNode node = doc.CreateNode(XmlNodeType.Element, "httpNode", null);
             AppendXmlAttributes(doc, node, httpNode);
 
-            XmlAttribute requestTypeAttr = doc.CreateAttribute("requestType");
-            requestTypeAttr.Value = httpNode.RequestType;
-            node.Attributes.Append(requestTypeAttr);
-            if (!string.IsNullOrEmpty(httpNode.FunctionNameOfRequestUrl))
-            {
-                XmlAttribute requestUrlAttr = doc.CreateAttribute("functionNameOfRequestUrl");
-                requestUrlAttr.Value = httpNode.FunctionNameOfRequestUrl;
-                node.Attributes.Append(requestUrlAttr);
-            }
-            if (!string.IsNullOrEmpty(httpNode.FunctionNameOfPostParsStr))
-            {
-                XmlAttribute postParsAttr = doc.CreateAttribute("functionNameOfPostParsStr");
-                postParsAttr.Value = httpNode.FunctionNameOfPostParsStr;
-                node.Attributes.Append(postParsAttr);
-            }
 
             if (httpNode.includeJSLibs != null && httpNode.includeJSLibs.Count > 0)
             {
                 node.AppendChild(ConvertToXmlNode(doc, httpNode.includeJSLibs));
             }
 
+            XmlNode initRequestJs = doc.CreateNode(XmlNodeType.Element, "initRequestJs", null);
+            initRequestJs.InnerText = httpNode.InitRequestJs;
+            XmlNode onLoadJs = doc.CreateNode(XmlNodeType.Element, "onLoadJs", null);
+            onLoadJs.InnerText = httpNode.OnLoadJs;
+            node.AppendChild(initRequestJs);
+            node.AppendChild(onLoadJs);
             return node;
         }
 
         private XmlNode ConvertToXmlNode(XmlDocument doc, List<string> includeJSLibs)
         {
-            XmlNode node = doc.CreateNode(XmlNodeType.Element, "jsLibs", null);
+            XmlNode node = doc.CreateNode(XmlNodeType.Element, "jslibs", null);
             foreach (string str in includeJSLibs)
             {
                 XmlNode includeNode = doc.CreateNode(XmlNodeType.Element, "include", null);
@@ -389,7 +372,11 @@ namespace HttpTool.Core.Model
                     XmlAttribute pathAttr = include.Attributes["path"];
                     if (pathAttr != null)
                     {
-                        includeJSLibs.Add(pathAttr.Value.Trim());
+                        string path = pathAttr.Value.Trim();
+                        if (!string.IsNullOrEmpty(path))
+                        {
+                            includeJSLibs.Add(path);
+                        }
                     }
                 }
             }

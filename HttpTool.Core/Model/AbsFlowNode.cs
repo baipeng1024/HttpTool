@@ -34,7 +34,10 @@ namespace HttpTool.Core.Model
 
         public List<string> includeJSLibs;
 
-        public abstract void Exec(FlowContext ctx);
+        public virtual void Exec(FlowContext ctx) {
+            ctx.Logger.Infor(string.Format("节点:{0}开始执行....",Name));
+         
+        }
 
         public string GetIncludeJsSnippet(FlowContext ctx)
         {

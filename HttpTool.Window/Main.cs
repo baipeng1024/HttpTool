@@ -9,8 +9,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
-
 namespace HttpTool.Window
 {
     public partial class Main : Form
@@ -131,12 +131,20 @@ namespace HttpTool.Window
 
         }
 
-        private void tvwFlows_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+  private void tvwFlows_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
             if (e.Node.Parent == null || e.Label == null)
             {
                 return;
             }
+
+
+
+
+
+
+
+
 
             if (e.Label == string.Empty || e.Label == e.Node.Text)
             {
@@ -159,6 +167,25 @@ namespace HttpTool.Window
 
 
         }
+
+
+        private void OnRunMenuItem_Click(object sender, EventArgs e)
+        {
+            FlowTreeNodeC treeNode = (FlowTreeNodeC)tvwFlows.SelectedNode;
+            SingleHttpFlow flow = treeNode.HttpFlow;
+            RunWindow runWindow = new RunWindow(flow);
+            runWindow.Show();
+            runWindow.Run();
+           // Thread t = new Thread(() =>
+           //{
+
+               
+             
+           //});
+           // t.SetApartmentState(ApartmentState.STA);
+           // t.Start();
+        }
+
 
         private void OnCreateDirMenuItem_Click(object sender, EventArgs e)
         {
@@ -209,7 +236,6 @@ namespace HttpTool.Window
             dirNode.ImageKey = ResourcesHelper.IMG_FOLDER_OPEN_KEY;
             dirNode.SelectedImageKey = dirNode.ImageKey;
         }
-
 
 
 

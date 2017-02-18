@@ -3,38 +3,41 @@
 <head>
     <title></title>
 </head>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <body>
     <script type="text/javascript">
 
-        var ctx = {};
+        var request = {
+            url: "www.baidu.com",
+            type:"post",
+            headers: "{\"host\":\"\",\"User-Agent\":\"\"}",
+            postPars: "a=1&b=2",
+        };
 
-        ctx.index = 0;
-        ctx.getIndex = function () {
-           
-            return 1;
-        }
-      
-        var v1 = ctx.getIndex();
-        
-        var v2 = function () {
+        function initRequest() {
 
-            return 2;
-        }();
-        
-        function c() {
-            return b();
+
         }
 
-        function b() {
-            return a();
+        function onLoad() {
+            
         }
 
-
-        function a() {
-            return "222";
+        function callback(data) {
+            alert(1);
         }
+
+        var url = "http://localhost:50288/Handler.ashx";
+
+        var script = document.createElement('script');
+        script.setAttribute('src', url);
+        // 把script标签加入head，此时调用开始
+        document.getElementsByTagName('head')[0].appendChild(script);
+
 
     </script>
+
+    123123
 </body>
 </html>
  

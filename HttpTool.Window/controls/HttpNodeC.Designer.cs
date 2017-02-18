@@ -28,97 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblRequestType = new System.Windows.Forms.Label();
-            this.cbxRequestType = new System.Windows.Forms.ComboBox();
-            this.lblRequestUrl = new System.Windows.Forms.Label();
-            this.tcRequestUrl = new HttpTool.Window.controls.TextC();
-            this.lblPostPars = new System.Windows.Forms.Label();
-            this.tcPostPars = new HttpTool.Window.controls.TextC();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tacScript = new HttpTool.Window.controls.TextAreaC();
+            this.tacInitRequest = new HttpTool.Window.controls.TextAreaC();
+            this.gbxInitRequest = new System.Windows.Forms.GroupBox();
+            this.gbxOnLoad = new System.Windows.Forms.GroupBox();
+            this.tacOnLoad = new HttpTool.Window.controls.TextAreaC();
             this.pnl.SuspendLayout();
             this.pnlNode.SuspendLayout();
+            this.gbxInitRequest.SuspendLayout();
+            this.gbxOnLoad.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlNode
             // 
-            this.pnlNode.Controls.Add(this.tacScript);
-            this.pnlNode.Controls.Add(this.label4);
-            this.pnlNode.Controls.Add(this.lblPostPars);
-            this.pnlNode.Controls.Add(this.tcPostPars);
-            this.pnlNode.Controls.Add(this.tcRequestUrl);
-            this.pnlNode.Controls.Add(this.lblRequestUrl);
-            this.pnlNode.Controls.Add(this.cbxRequestType);
-            this.pnlNode.Controls.Add(this.lblRequestType);
+            this.pnlNode.Controls.Add(this.gbxOnLoad);
+            this.pnlNode.Controls.Add(this.gbxInitRequest);
             // 
-            // lblRequestType
+            // tacInitRequest
             // 
-            this.lblRequestType.AutoSize = true;
-            this.lblRequestType.Location = new System.Drawing.Point(16, 12);
-            this.lblRequestType.Name = "lblRequestType";
-            this.lblRequestType.Size = new System.Drawing.Size(65, 12);
-            this.lblRequestType.TabIndex = 0;
-            this.lblRequestType.Text = "请求类型：";
+            this.tacInitRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tacInitRequest.Location = new System.Drawing.Point(3, 17);
+            this.tacInitRequest.Name = "tacInitRequest";
+            this.tacInitRequest.Size = new System.Drawing.Size(729, 165);
+            this.tacInitRequest.TabIndex = 7;
             // 
-            // cbxRequestType
+            // gbxInitRequest
             // 
-            this.cbxRequestType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxRequestType.FormattingEnabled = true;
-            this.cbxRequestType.Items.AddRange(new object[] {
-            "get",
-            "post"});
-            this.cbxRequestType.Location = new System.Drawing.Point(87, 8);
-            this.cbxRequestType.Name = "cbxRequestType";
-            this.cbxRequestType.Size = new System.Drawing.Size(209, 20);
-            this.cbxRequestType.TabIndex = 1;
+            this.gbxInitRequest.Controls.Add(this.tacInitRequest);
+            this.gbxInitRequest.Location = new System.Drawing.Point(18, 13);
+            this.gbxInitRequest.Name = "gbxInitRequest";
+            this.gbxInitRequest.Size = new System.Drawing.Size(735, 185);
+            this.gbxInitRequest.TabIndex = 8;
+            this.gbxInitRequest.TabStop = false;
+            this.gbxInitRequest.Text = "initRequest";
             // 
-            // lblRequestUrl
+            // gbxOnLoad
             // 
-            this.lblRequestUrl.AutoSize = true;
-            this.lblRequestUrl.Location = new System.Drawing.Point(362, 12);
-            this.lblRequestUrl.Name = "lblRequestUrl";
-            this.lblRequestUrl.Size = new System.Drawing.Size(161, 12);
-            this.lblRequestUrl.TabIndex = 2;
-            this.lblRequestUrl.Text = "FunctionNameOfRequestUrl：";
+            this.gbxOnLoad.Controls.Add(this.tacOnLoad);
+            this.gbxOnLoad.Location = new System.Drawing.Point(18, 204);
+            this.gbxOnLoad.Name = "gbxOnLoad";
+            this.gbxOnLoad.Size = new System.Drawing.Size(735, 235);
+            this.gbxOnLoad.TabIndex = 9;
+            this.gbxOnLoad.TabStop = false;
+            this.gbxOnLoad.Text = "onLoad";
             // 
-            // tcRequestUrl
+            // tacOnLoad
             // 
-            this.tcRequestUrl.Location = new System.Drawing.Point(529, 8);
-            this.tcRequestUrl.Name = "tcRequestUrl";
-            this.tcRequestUrl.Size = new System.Drawing.Size(224, 21);
-            this.tcRequestUrl.TabIndex = 3;
-            // 
-            // lblPostPars
-            // 
-            this.lblPostPars.AutoSize = true;
-            this.lblPostPars.Location = new System.Drawing.Point(16, 49);
-            this.lblPostPars.Name = "lblPostPars";
-            this.lblPostPars.Size = new System.Drawing.Size(167, 12);
-            this.lblPostPars.TabIndex = 4;
-            this.lblPostPars.Text = "FunctionNameOfPostParsStr：";
-            // 
-            // tcPostPars
-            // 
-            this.tcPostPars.Location = new System.Drawing.Point(187, 45);
-            this.tcPostPars.Name = "tcPostPars";
-            this.tcPostPars.Size = new System.Drawing.Size(224, 21);
-            this.tcPostPars.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 86);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "脚本：";
-            // 
-            // tacScript
-            // 
-            this.tacScript.Location = new System.Drawing.Point(61, 87);
-            this.tacScript.Name = "tacScript";
-            this.tacScript.Size = new System.Drawing.Size(692, 363);
-            this.tacScript.TabIndex = 6;
+            this.tacOnLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tacOnLoad.Location = new System.Drawing.Point(3, 17);
+            this.tacOnLoad.Name = "tacOnLoad";
+            this.tacOnLoad.Size = new System.Drawing.Size(729, 215);
+            this.tacOnLoad.TabIndex = 7;
             // 
             // HttpNodeC
             // 
@@ -128,20 +87,17 @@
             this.pnl.ResumeLayout(false);
             this.pnl.PerformLayout();
             this.pnlNode.ResumeLayout(false);
-            this.pnlNode.PerformLayout();
+            this.gbxInitRequest.ResumeLayout(false);
+            this.gbxOnLoad.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblRequestType;
-        private System.Windows.Forms.ComboBox cbxRequestType;
-        private System.Windows.Forms.Label lblRequestUrl;
-        private System.Windows.Forms.Label lblPostPars;
-        private TextC tcRequestUrl;
-        private System.Windows.Forms.Label label4;
-        private TextC tcPostPars;
-        private TextAreaC tacScript;
+        private TextAreaC tacInitRequest;
+        private System.Windows.Forms.GroupBox gbxInitRequest;
+        private System.Windows.Forms.GroupBox gbxOnLoad;
+        private TextAreaC tacOnLoad;
     }
 }
