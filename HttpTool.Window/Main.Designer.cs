@@ -40,9 +40,11 @@
             this.创建流程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.创建流程节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.移除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.spcMain)).BeginInit();
             this.spcMain.Panel1.SuspendLayout();
             this.spcMain.Panel2.SuspendLayout();
             this.spcMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spcRight)).BeginInit();
             this.spcRight.Panel1.SuspendLayout();
             this.spcRight.SuspendLayout();
             this.menus.SuspendLayout();
@@ -79,6 +81,7 @@
             this.tvwFlows.Name = "tvwFlows";
             this.tvwFlows.Size = new System.Drawing.Size(217, 700);
             this.tvwFlows.TabIndex = 0;
+            this.tvwFlows.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvwFlows_AfterLabelEdit);
             this.tvwFlows.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvwFlows_AfterCollapse);
             this.tvwFlows.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvwFlows_AfterExpand);
             this.tvwFlows.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwFlows_AfterSelect);
@@ -182,8 +185,10 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.spcMain.Panel1.ResumeLayout(false);
             this.spcMain.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spcMain)).EndInit();
             this.spcMain.ResumeLayout(false);
             this.spcRight.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spcRight)).EndInit();
             this.spcRight.ResumeLayout(false);
             this.menus.ResumeLayout(false);
             this.menus.PerformLayout();

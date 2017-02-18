@@ -24,6 +24,8 @@ namespace HttpTool.Window.controls
 
         public virtual void OnMouseDown(MouseButtons mouseButton) { }
 
+        public virtual void Save() { }
+
 
         public string GetParentPath()
         {

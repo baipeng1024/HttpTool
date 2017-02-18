@@ -116,21 +116,49 @@ namespace HttpTool.Window
             TreeNode currentNode = tvwFlows.GetNodeAt(new Point(e.X, e.Y));
             if (currentNode != null)
             {
-                ((AbsTreeNode)currentNode).OnMouseDown(e.Button); 
-            }          
+                ((AbsTreeNode)currentNode).OnMouseDown(e.Button);
+            }
         }
 
 
         private void tvwFlows_KeyDown(object sender, KeyEventArgs e)
         {
             TreeNode node = tvwFlows.SelectedNode;
-            if (node != null && node.Parent != null && e.KeyData == Keys.F2)
+            if (node.Parent != null && e.KeyData == Keys.F2)
             {
                 node.BeginEdit();
             }
 
         }
 
+        private void tvwFlows_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            if (e.Node.Parent == null || e.Label == null)
+            {
+                return;
+            }
+
+            if (e.Label == string.Empty || e.Label == e.Node.Text)
+            {
+                e.CancelEdit = true;
+                return;
+            }
+
+            foreach (TreeNode node in e.Node.Parent.Nodes)
+            {
+                if (e.Node != node)
+                {
+                    if (e.Label == node.Text)
+                    {
+                        e.CancelEdit = true;
+                        return;
+                    }
+                }
+            }
+
+
+
+        }
 
         private void OnCreateDirMenuItem_Click(object sender, EventArgs e)
         {
@@ -181,6 +209,8 @@ namespace HttpTool.Window
             dirNode.ImageKey = ResourcesHelper.IMG_FOLDER_OPEN_KEY;
             dirNode.SelectedImageKey = dirNode.ImageKey;
         }
+
+
 
 
 
