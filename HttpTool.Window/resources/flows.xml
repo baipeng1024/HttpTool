@@ -7,16 +7,16 @@
       </jsLibs>
 
       <nodes>
-        <httpNode id="7801f853-db34-40de-9eb0-1be178894e2e" name="f2" desc="" requestType="get" functionNameOfRequestUrl="" functionNameOfPostParsStr="" >
+        <httpNode id="7801f853-db34-40de-9eb0-1be178894e2e" name="f2" desc="" >
           <jsLibs>
             <include path="" />
           </jsLibs>
 
-          <scriptOfHandleRequest>
-          </scriptOfHandleRequest>
+          <initRequestJs>
+          </initRequestJs>
 
-          <scriptOfHandleResponse>
-          </scriptOfHandleResponse>
+          <onLoadJs>
+          </onLoadJs>
         </httpNode>
 
         <jsNode id="004550d7-ef38-479c-8c78-4bac681d48d6" name="j1" desc="">

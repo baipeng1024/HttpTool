@@ -42,7 +42,7 @@ namespace HttpTool.Test
         JSNode CreateJSNode(string name,string js) {
             JSNode node = new JSNode(Guid.NewGuid().ToString());
             node.Name = name;
-            node.JS = js;
+            node.Js = js;
             return node;
         }
     }

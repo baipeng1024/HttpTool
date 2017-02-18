@@ -24,16 +24,17 @@ namespace HttpTool.Window.controls
             base.OnMouseDown(mouseButton);
             if (mouseButton == MouseButtons.Right)
             {
-                ContextMenuStrip.Items[0].Visible = true;
+                ContextMenuStrip.Items[0].Visible = false;
                 ContextMenuStrip.Items[1].Visible = true;
                 ContextMenuStrip.Items[2].Visible = true;
+                ContextMenuStrip.Items[3].Visible = true;
                 if (Parent == null)
                 {
-                    ContextMenuStrip.Items[3].Visible = false;
+                    ContextMenuStrip.Items[4].Visible = false;
                 }
                 else
                 {
-                    ContextMenuStrip.Items[3].Visible = true;
+                    ContextMenuStrip.Items[4].Visible = true;
                 }
             }
         }

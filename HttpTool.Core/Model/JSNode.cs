@@ -17,11 +17,12 @@ namespace HttpTool.Core.Model
 
         public JSNode() { }
 
-        public string JS { get; set; }
+        public string Js { get; set; }
 
         public override void Exec(FlowContext ctx)
         {
-            if (string.IsNullOrEmpty(this.JS)) {
+            base.Exec(ctx);
+            if (string.IsNullOrEmpty(this.Js)) {
                 return;
             }
 
@@ -29,7 +30,7 @@ namespace HttpTool.Core.Model
             string jsContent = this.GetIncludeJsSnippet(ctx);
 
             string funName = "f" + Guid.NewGuid().ToString().Replace("-", "");
-            string jsFun = "function "+ funName +"(){"+ this.JS +" };";
+            string jsFun = "function "+ funName +"(){"+ this.Js +" };";
             string content = string.Format("<!DOCTYPE html><html><head> <title></title></head><body><script type=\"text/javascript\"> {0} \n {1} \n</script></body></html>", jsContent, jsFun);
             Tool.SetWebBrowserDocumentText(wb, content);
 
@@ -38,6 +39,8 @@ namespace HttpTool.Core.Model
             doc.InvokeScript(FlowContext.INIT_JS_CTX_FUN_NAME, args);
             doc.InvokeScript(funName);
             ctx.JsCtx = doc.InvokeScript(FlowContext.GET_JS_CTX_FUN_NAME);
+            
+            while (wb.ReadyState != WebBrowserReadyState.Complete) Application.DoEvents();
 
             if (this.NextNode != null) {
                 this.NextNode.Exec(ctx);

@@ -28,7 +28,7 @@ namespace HttpTool.Window.controls
         protected override void Load()
         {
             base.Load();
-            tacScript.SetText(((JSNode)flowNode).JS);
+            tacScript.SetText(((JSNode)flowNode).Js);
         }
 
         protected override void LockEdit()
@@ -47,7 +47,7 @@ namespace HttpTool.Window.controls
         {
             if (base.Save())
             {
-                ((JSNode)flowNode).JS = tacScript.GetText();
+                ((JSNode)flowNode).Js = tacScript.GetText();
                 return true;
             }
             return false;

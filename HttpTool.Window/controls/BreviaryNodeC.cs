@@ -25,6 +25,7 @@ namespace HttpTool.Window.controls
         {
             InitializeComponent();
             this.FlowNode = node;
+            this.lblName.Text = node.Name;
 
             if (FlowNode is SingleHttpFlow)
             {
