@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flows>
+  <directory name="京东">
+    <singleHttpFlow id="8683f88e-b52f-4f50-a2dd-0c3bb5289b47" name="价格查询" desc="查询商品的价格信息" >
+      <jsLibs>
+        <include path="jsLib\jquery-1.12.3.min.js" />
+      </jsLibs>
+
+      <nodes>
+        <httpNode id="7801f853-db34-40de-9eb0-1be178894e2e" name="erp登录" desc="" >    
+
+          <initRequestJs>
+            var request = {
+               url : "http://ssa.jd.com/sso/login",
+               type: "get"               
+
+            }
+          </initRequestJs>
+
+          <onLoadJs>
+             $("#username").val("baipeng5");
+             $("#password").val("PASS@word1");
+             $('.formsubmit_btn').click();
+             
+          </onLoadJs>
+        </httpNode>
+
+
+
+
+
+   
+      </nodes>
+    </singleHttpFlow>
+  </directory>
+</flows>
