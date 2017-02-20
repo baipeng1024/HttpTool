@@ -29,7 +29,7 @@ namespace HttpTool.Test
             HTTP_FLOW.HeadNode = CreateJSNode("jsNode1",initJS + nodeJs);
             HTTP_FLOW.HeadNode.NextNode = CreateJSNode("jsNode2",nodeJs);
             HTTP_FLOW.HeadNode.NextNode.NextNode = CreateJSNode("jsNode3", nodeJs);
-            FlowContext ctx = HTTP_FLOW.Run(null);
+            FlowContext ctx = HTTP_FLOW.Run(null,null);
 
             WebBrowser wb = ctx.GetWebBrowser();
             Tool.AppendJavaScriptSnippet(wb.Document,"function getIndex(){return SYS_CTX.index;};");         
