@@ -7,23 +7,31 @@
       </jsLibs>
 
       <nodes>
-        <httpNode id="7801f853-db34-40de-9eb0-1be178894e2e" name="erp登录" desc="" >    
+     <httpNode id="7801f853-db34-40de-9eb0-1be178894e2e" name="erp登录" desc="" >    
 
           <initRequestJs>
             var request = {
                url : "http://ssa.jd.com/sso/login",
                type: "get"               
 
-            }
+            } 
           </initRequestJs>
 
           <onLoadJs>
-             $("#username").val("baipeng5");
-             $("#password").val("PASS@word1");
-             $('.formsubmit_btn').click();
+              $.ajax({
+                url : 'http://ssa.jd.com/sso/login',
+                cache : false, 
+                async : false,
+                type : "GET",
+                dataType : 'html',
+                success : function (result){
+                    alert(result);
+                }
+            });
              
           </onLoadJs>
-        </httpNode>
+        </httpNode> 
+
 
 
 

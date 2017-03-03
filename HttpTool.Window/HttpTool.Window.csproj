@@ -68,6 +68,7 @@
     <Compile Include="AddFlowNode.Designer.cs">
       <DependentUpon>AddFlowNode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Config.cs" />
     <Compile Include="controls\AbsTreeNode.cs" />
     <Compile Include="controls\ComboBoxItem.cs" />
     <Compile Include="controls\DirTreeNodeC.cs" />
@@ -230,6 +231,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config.xml" />
     <Content Include="HTMLPage1.html" />
     <None Include="resources\脚本.png" />
     <None Include="resources\web.png" />
