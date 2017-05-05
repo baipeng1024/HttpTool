@@ -231,7 +231,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="config.xml" />
+    <Content Include="config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="HTMLPage1.html" />
     <None Include="resources\脚本.png" />
     <None Include="resources\web.png" />

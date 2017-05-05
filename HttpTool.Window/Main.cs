@@ -30,6 +30,7 @@ namespace HttpTool.Window
                 tvwFlows.ImageList = ResourcesHelper.IMAGES;
                 tvwFlows.Nodes.Add(new DirTreeNodeC("flows", flpnl, spcRight.Panel2, ctxMenu));
                 GlobalObj.FLOWS.Load("flows.xml");
+                GlobalObj.CONFIG.Load("config.xml");
             }
             catch (Exception ex)
             {

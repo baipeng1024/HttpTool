@@ -9,7 +9,7 @@ namespace HttpTool.Window.tool
     public class GlobalObj
     {
         public static Flows FLOWS = new Flows();
-
+        public static Config CONFIG = new Config();
 
     }
 }
